@@ -230,7 +230,8 @@
 	[
 		[ "D:/untitled5/Box.h", "MU", "EWIEGA46WW/moc_Box.cpp", null ],
 		[ "D:/untitled5/Game.h", "MU", "EWIEGA46WW/moc_Game.cpp", null ],
-		[ "D:/untitled5/Tank.h", "MU", "EWIEGA46WW/moc_Tank.cpp", null ]
+		[ "D:/untitled5/Tank.h", "MU", "EWIEGA46WW/moc_Tank.cpp", null ],
+		[ "D:/untitled5/Turret.h", "MU", "EWIEGA46WW/moc_Turret.cpp", null ]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "D:/untitled5/cmake-build-debug/untitled5_autogen/include",
@@ -306,6 +307,7 @@
 		[ "D:/untitled5/Box.cpp", "MU", null ],
 		[ "D:/untitled5/Game.cpp", "MU", null ],
 		[ "D:/untitled5/Tank.cpp", "MU", null ],
+		[ "D:/untitled5/Turret.cpp", "MU", null ],
 		[ "D:/untitled5/main.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],

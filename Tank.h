@@ -4,6 +4,9 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include <QKeyEvent>
+#include "Turret.h"
+
+
 
 class Tank : public QObject, public QGraphicsPixmapItem
 {
@@ -20,6 +23,7 @@ public:
     void setRotationSpeed(double speed);
 
 private:
+    Turret *turret;
     double rotationSpeed{};
     double angle;
     int speed;
@@ -35,6 +39,9 @@ private:
     void move();
 
     bool checkCollision();
+
+
+    void updateTurretRotation();
 };
 
-#endif // TANK_H
+#endif

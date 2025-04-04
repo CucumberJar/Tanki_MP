@@ -461,11 +461,13 @@ untitled5_autogen/timestamp: \
 	D:/QT/6.8.1/mingw_64/include/QtGui/qwindowdefs_win.h \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsPixmapItem \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsScene \
+	D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsSceneHoverEvent \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsView \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/qabstractscrollarea.h \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/qframe.h \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/qgraphicsitem.h \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/qgraphicsscene.h \
+	D:/QT/6.8.1/mingw_64/include/QtWidgets/qgraphicssceneevent.h \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/qgraphicsview.h \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/qscrollarea.h \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/qsizepolicy.h \
@@ -618,6 +620,8 @@ untitled5_autogen/timestamp: \
 	D:/untitled5/Game.h \
 	D:/untitled5/Tank.cpp \
 	D:/untitled5/Tank.h \
+	D:/untitled5/Turret.cpp \
+	D:/untitled5/Turret.h \
 	D:/untitled5/cmake-build-debug/CMakeFiles/3.30.5/CMakeCCompiler.cmake \
 	D:/untitled5/cmake-build-debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake \
 	D:/untitled5/cmake-build-debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake \

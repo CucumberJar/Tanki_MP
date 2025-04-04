@@ -1,11 +1,17 @@
 #include "Tank.h"
 #include "Box.h"
+#include <QGraphicsView>
+
+#include <QCursor>
+#include "Turret.h"
 #include <QGraphicsScene>
 #include <QPixmap>
 #include <QTransform>
 #include <QTimer>
 #include <cmath>
 #include <QPainter>
+#include <QGraphicsSceneHoverEvent>
+#include <QLineF>
 
 Tank::Tank(QGraphicsScene *scene)
         : speed(4), angle(0),
@@ -15,16 +21,61 @@ Tank::Tank(QGraphicsScene *scene)
     QPixmap originalPixmap("D:/untitled5/drawable/tank.png");
     setPixmap(originalPixmap);
     setTransformOriginPoint(pixmap().width() / 2, pixmap().height() / 2);
-
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Tank::move);
     timer->start(16);
-
     scene->addItem(this);
+    turret = new Turret(this);
+    turret->setZValue(1);
+
+// Центрируем башню по центру танка
+    turret->setPos(-15,14);
+
+    setAcceptHoverEvents(true);
+
     setPos(100, 100);
     setFlag(QGraphicsItem::ItemIsFocusable);
     setFocus();
 }
+
+
+void Tank::updateTurretRotation() {
+    if (!turret) return;
+
+    // Центр башни в сцене
+    QPointF turretCenter = turret->mapToScene(turret->boundingRect().center());
+
+    // Позиция курсора в сцене
+    QPoint cursorPos = QCursor::pos();
+    QPointF cursorScenePos = scene()->views().first()->mapToScene(cursorPos);
+
+    // Направление от центра башни до курсора
+    QLineF lineToCursor(turretCenter, cursorScenePos);
+    qreal targetAngle = -lineToCursor.angle(); // Негативный угол для корректного вращения по часовой стрелке
+
+    // Вычисляем угол для башни с учетом угла танка (когда танк поворачивается, башня также должна вращаться)
+    qreal turretAngle = targetAngle - angle;
+
+    // Ограничиваем скорость поворота башни
+    const qreal MAX_TURRET_ROTATION_SPEED = 5.0; // Максимальная скорость поворота в градусах
+    qreal deltaAngle = turretAngle - turret->rotation();
+    if (deltaAngle > 180) {
+        deltaAngle -= 360;
+    } else if (deltaAngle < -180) {
+        deltaAngle += 360;
+    }
+
+    if (deltaAngle > MAX_TURRET_ROTATION_SPEED) {
+        deltaAngle = MAX_TURRET_ROTATION_SPEED;
+    } else if (deltaAngle < -MAX_TURRET_ROTATION_SPEED) {
+        deltaAngle = -MAX_TURRET_ROTATION_SPEED;
+    }
+
+    // Поворачиваем башню
+    turret->setRotation(turret->rotation() + deltaAngle);
+}
+
+
 
 void Tank::keyPressEvent(QKeyEvent *event) {
     switch (event->key()) {
@@ -55,6 +106,8 @@ void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 }
 
 void Tank::move() {
+
+    updateTurretRotation();
     qreal newAngle = angle;
     if (rotatingLeft)  newAngle -= 1;
     if (rotatingRight) newAngle += 1;
@@ -81,6 +134,8 @@ void Tank::move() {
     if (checkCollision()) {
         setPos(pos() - delta);
     }
+    ;  // следим за курсором каждый кадр
+
 }
 
 bool Tank::checkCollision() {

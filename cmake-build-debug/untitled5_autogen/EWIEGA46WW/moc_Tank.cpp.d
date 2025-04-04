@@ -416,8 +416,11 @@ D:/untitled5/cmake-build-debug/untitled5_autogen/EWIEGA46WW/moc_Tank.cpp: D:/unt
   D:/QT/6.8.1/mingw_64/include/QtGui/qwindowdefs_win.h \
   D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsPixmapItem \
   D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsScene \
+  D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsSceneHoverEvent \
   D:/QT/6.8.1/mingw_64/include/QtWidgets/qgraphicsitem.h \
   D:/QT/6.8.1/mingw_64/include/QtWidgets/qgraphicsscene.h \
+  D:/QT/6.8.1/mingw_64/include/QtWidgets/qgraphicssceneevent.h \
   D:/QT/6.8.1/mingw_64/include/QtWidgets/qtwidgets-config.h \
   D:/QT/6.8.1/mingw_64/include/QtWidgets/qtwidgetsexports.h \
-  D:/QT/6.8.1/mingw_64/include/QtWidgets/qtwidgetsglobal.h
+  D:/QT/6.8.1/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
+  D:/untitled5/Turret.h

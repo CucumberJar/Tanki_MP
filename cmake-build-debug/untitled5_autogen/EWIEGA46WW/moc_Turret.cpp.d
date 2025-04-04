@@ -246,7 +246,7 @@ D:/untitled5/cmake-build-debug/untitled5_autogen/EWIEGA46WW/moc_Turret.cpp: D:/u
   D:/Program/IDE/CLion/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mingw32/include/vadefs.h \
   D:/Program/IDE/CLion/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mingw32/include/wchar.h \
   D:/Program/IDE/CLion/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mingw32/include/wctype.h \
-  D:/QT/6.8.1/mingw_64/include/QtCore/QTimer \
+  D:/QT/6.8.1/mingw_64/include/QtCore/QObject \
   D:/QT/6.8.1/mingw_64/include/QtCore/q20functional.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/q20iterator.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/q20memory.h \
@@ -261,7 +261,6 @@ D:/untitled5/cmake-build-debug/untitled5_autogen/EWIEGA46WW/moc_Turret.cpp: D:/u
   D:/QT/6.8.1/mingw_64/include/QtCore/qatomic.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qatomic_cxx11.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qbasicatomic.h \
-  D:/QT/6.8.1/mingw_64/include/QtCore/qbasictimer.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qbindingstorage.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qbytearray.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
@@ -278,6 +277,7 @@ D:/untitled5/cmake-build-debug/untitled5_autogen/EWIEGA46WW/moc_Turret.cpp: D:/u
   D:/QT/6.8.1/mingw_64/include/QtCore/qcontainerinfo.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qcontainertools_impl.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qcontiguouscache.h \
+  D:/QT/6.8.1/mingw_64/include/QtCore/qcoreevent.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qdarwinhelpers.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qdatastream.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qdebug.h \
@@ -351,7 +351,6 @@ D:/untitled5/cmake-build-debug/untitled5_autogen/EWIEGA46WW/moc_Turret.cpp: D:/u
   D:/QT/6.8.1/mingw_64/include/QtCore/qtdeprecationmarkers.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qtenvironmentvariables.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qtextstream.h \
-  D:/QT/6.8.1/mingw_64/include/QtCore/qtimer.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qtmetamacros.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qtnoop.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qtpreprocessorsupport.h \
@@ -368,7 +367,6 @@ D:/untitled5/cmake-build-debug/untitled5_autogen/EWIEGA46WW/moc_Turret.cpp: D:/u
   D:/QT/6.8.1/mingw_64/include/QtCore/qversiontagging.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qxptype_traits.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qyieldcpu.h \
-  D:/QT/6.8.1/mingw_64/include/QtGui/QPixmap \
   D:/QT/6.8.1/mingw_64/include/QtGui/qcolor.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qimage.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qpaintdevice.h \
@@ -386,7 +384,9 @@ D:/untitled5/cmake-build-debug/untitled5_autogen/EWIEGA46WW/moc_Turret.cpp: D:/u
   D:/QT/6.8.1/mingw_64/include/QtGui/qwindowdefs.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qwindowdefs_win.h \
   D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsPixmapItem \
+  D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsSceneHoverEvent \
   D:/QT/6.8.1/mingw_64/include/QtWidgets/qgraphicsitem.h \
+  D:/QT/6.8.1/mingw_64/include/QtWidgets/qgraphicssceneevent.h \
   D:/QT/6.8.1/mingw_64/include/QtWidgets/qtwidgets-config.h \
   D:/QT/6.8.1/mingw_64/include/QtWidgets/qtwidgetsexports.h \
   D:/QT/6.8.1/mingw_64/include/QtWidgets/qtwidgetsglobal.h
