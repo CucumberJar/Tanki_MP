@@ -1,32 +1,40 @@
 #ifndef TANK_H
 #define TANK_H
 
-#include <QGraphicsRectItem>
-#include <QTimer>
-#include "Turret.h"
+#include <QGraphicsPixmapItem>
+#include <QGraphicsScene>
+#include <QKeyEvent>
 
-class Tank : public QObject, public QGraphicsRectItem {
+class Tank : public QObject, public QGraphicsPixmapItem
+{
 Q_OBJECT
 public:
-    Tank();
-    void keyPressEvent(QKeyEvent* event);
-    void keyReleaseEvent(QKeyEvent* event);
-    void mouseMoveEvent(QGraphicsSceneMouseEvent* event); // Добавляем обработку мыши
-public:
-    void rotateTurret(const QPointF &cursorPosition);
-
-private slots:
+    QRectF boundingRect() const override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    Tank(QGraphicsScene *scene);
+    void moveUp();
+    void moveDown();
+    void rotateLeft();
+    void rotateRight();
     void updateMovement();
+    void setRotationSpeed(double speed);
 
 private:
-    QTimer* moveTimer;
-    bool isMoving = false;
-    bool isRotatingLeft = false;
-    bool isRotatingRight = false;
-    const qreal speed = 5.0;
-    const qreal rotationSpeed = 5.0;
+    double rotationSpeed{};
+    double angle;
+    int speed;
+    bool movingUp;
+    bool rotatingLeft;
+    bool rotatingRight;
+    bool movingDown;
 
-    Turret* turret; // Башня
+    void keyReleaseEvent(QKeyEvent *event);
+
+    void keyPressEvent(QKeyEvent *event);
+
+    void move();
+
+    bool checkCollision();
 };
 
 #endif // TANK_H

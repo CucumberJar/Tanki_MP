@@ -368,6 +368,7 @@ D:/untitled5/cmake-build-debug/untitled5_autogen/EWIEGA46WW/moc_Turret.cpp: D:/u
   D:/QT/6.8.1/mingw_64/include/QtCore/qversiontagging.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qxptype_traits.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qyieldcpu.h \
+  D:/QT/6.8.1/mingw_64/include/QtGui/QPixmap \
   D:/QT/6.8.1/mingw_64/include/QtGui/qcolor.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qimage.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qpaintdevice.h \
@@ -384,7 +385,7 @@ D:/untitled5/cmake-build-debug/untitled5_autogen/EWIEGA46WW/moc_Turret.cpp: D:/u
   D:/QT/6.8.1/mingw_64/include/QtGui/qtransform.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qwindowdefs.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qwindowdefs_win.h \
-  D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsRectItem \
+  D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsPixmapItem \
   D:/QT/6.8.1/mingw_64/include/QtWidgets/qgraphicsitem.h \
   D:/QT/6.8.1/mingw_64/include/QtWidgets/qtwidgets-config.h \
   D:/QT/6.8.1/mingw_64/include/QtWidgets/qtwidgetsexports.h \

@@ -1,53 +1,25 @@
 #include <QApplication>
-#include <QGraphicsView>
 #include <QGraphicsScene>
-#include <QGraphicsSceneMouseEvent>
-#include <QDebug>
-#include <QMouseEvent>
-#include "Tank.h"
+#include <QGraphicsView>
+#include "Game.h"
+#include "Box.h"
 
-class CustomView : public QGraphicsView {
-public:
-    Tank *tank;
+int main(int argc, char *argv[])
+{
+    QApplication app(argc, argv);
 
-    explicit CustomView(Tank *t, QGraphicsScene *scene) : QGraphicsView(scene), tank(t) {
-        setMouseTracking(true);
-    }
-
-protected:
-    void mouseMoveEvent(QMouseEvent *event) override {
-        if (tank) {
-            QPointF scenePos = mapToScene(event->pos());
-            tank->rotateTurret(scenePos); // Новый метод для вращения башни
-        }
-        QGraphicsView::mouseMoveEvent(event);
-    }
-
-    void mousePressEvent(QMouseEvent *event) override {
-        if (tank) {
-            tank->setFocus(); // Возвращаем фокус, чтобы танк снова слушал клавиатуру
-        }
-        QGraphicsView::mousePressEvent(event);
-    }
-};
-
-int main(int argc, char *argv[]) {
-    QApplication a(argc, argv);
-
-    QGraphicsScene *scene = new QGraphicsScene();
-    Tank *tank = new Tank();
-    tank->setPos(100, 100);
-
-    scene->addItem(tank);
-    tank->setFlag(QGraphicsItem::ItemIsFocusable);
-    tank->setFocus();
-
-    CustomView view(tank, scene);
-    view.setRenderHint(QPainter::Antialiasing);
-    view.setFixedSize(1000, 1000);
-    view.show();
-
-    qDebug() << "Game started!";
-
-    return a.exec();
+    QGraphicsScene scene;
+    scene.addItem(new Box(0, 0));
+    scene.addItem(new Box(32, 0));
+    scene.addItem(new Box(64, 0));
+    scene.addItem(new Box(0, 32));
+    scene.addItem(new Box(0,64 ));
+    scene.addItem(new Box(300, 300));
+    scene.addItem(new Box(300, 400));
+    scene.addItem(new Box(300, 500));
+    scene.addItem(new Box(500, 200));
+    scene.addItem(new Box(400, 400));
+    Game gameWindow(&scene);
+    gameWindow.show();
+    return QApplication::exec();
 }

@@ -10,7 +10,7 @@ set(CMAKE_PREFIX_PATH "D:/QT/6.8.1/mingw_64")
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
 
-add_executable(untitled5 main.cpp Tank.cpp Turret.cpp)
+add_executable(untitled5 main.cpp Tank.cpp Game.cpp Box.cpp)
 
 target_link_libraries(untitled5 Qt6::Core Qt6::Gui Qt6::Widgets)
 

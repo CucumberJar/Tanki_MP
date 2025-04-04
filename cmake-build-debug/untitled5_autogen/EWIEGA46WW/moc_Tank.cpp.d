@@ -246,7 +246,11 @@ D:/untitled5/cmake-build-debug/untitled5_autogen/EWIEGA46WW/moc_Tank.cpp: D:/unt
   D:/Program/IDE/CLion/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mingw32/include/vadefs.h \
   D:/Program/IDE/CLion/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mingw32/include/wchar.h \
   D:/Program/IDE/CLion/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mingw32/include/wctype.h \
-  D:/QT/6.8.1/mingw_64/include/QtCore/QTimer \
+  D:/QT/6.8.1/mingw_64/include/QtCore/QList \
+  D:/QT/6.8.1/mingw_64/include/QtCore/QObject \
+  D:/QT/6.8.1/mingw_64/include/QtCore/QRect \
+  D:/QT/6.8.1/mingw_64/include/QtCore/QSize \
+  D:/QT/6.8.1/mingw_64/include/QtCore/QSizeF \
   D:/QT/6.8.1/mingw_64/include/QtCore/q20functional.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/q20iterator.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/q20memory.h \
@@ -261,7 +265,6 @@ D:/untitled5/cmake-build-debug/untitled5_autogen/EWIEGA46WW/moc_Tank.cpp: D:/unt
   D:/QT/6.8.1/mingw_64/include/QtCore/qatomic.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qatomic_cxx11.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qbasicatomic.h \
-  D:/QT/6.8.1/mingw_64/include/QtCore/qbasictimer.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qbindingstorage.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qbytearray.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
@@ -278,9 +281,16 @@ D:/untitled5/cmake-build-debug/untitled5_autogen/EWIEGA46WW/moc_Tank.cpp: D:/unt
   D:/QT/6.8.1/mingw_64/include/QtCore/qcontainerinfo.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qcontainertools_impl.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qcontiguouscache.h \
+  D:/QT/6.8.1/mingw_64/include/QtCore/qcoreapplication.h \
+  D:/QT/6.8.1/mingw_64/include/QtCore/qcoreapplication_platform.h \
+  D:/QT/6.8.1/mingw_64/include/QtCore/qcoreevent.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qdarwinhelpers.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qdatastream.h \
+  D:/QT/6.8.1/mingw_64/include/QtCore/qdeadlinetimer.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qdebug.h \
+  D:/QT/6.8.1/mingw_64/include/QtCore/qelapsedtimer.h \
+  D:/QT/6.8.1/mingw_64/include/QtCore/qendian.h \
+  D:/QT/6.8.1/mingw_64/include/QtCore/qeventloop.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qexceptionhandling.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qflags.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qfloat16.h \
@@ -292,12 +302,14 @@ D:/untitled5/cmake-build-debug/untitled5_autogen/EWIEGA46WW/moc_Tank.cpp: D:/unt
   D:/QT/6.8.1/mingw_64/include/QtCore/qglobalstatic.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qhash.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qhashfunctions.h \
+  D:/QT/6.8.1/mingw_64/include/QtCore/qiodevice.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qiodevicebase.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qiterable.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qiterator.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qlatin1stringview.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qline.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qlist.h \
+  D:/QT/6.8.1/mingw_64/include/QtCore/qlocale.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qlogging.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qmalloc.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qmap.h \
@@ -307,6 +319,7 @@ D:/untitled5/cmake-build-debug/untitled5_autogen/EWIEGA46WW/moc_Tank.cpp: D:/unt
   D:/QT/6.8.1/mingw_64/include/QtCore/qmetatype.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qminmax.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qnamespace.h \
+  D:/QT/6.8.1/mingw_64/include/QtCore/qnativeinterface.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qnumeric.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qobject.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qobject_impl.h \
@@ -351,7 +364,6 @@ D:/untitled5/cmake-build-debug/untitled5_autogen/EWIEGA46WW/moc_Tank.cpp: D:/unt
   D:/QT/6.8.1/mingw_64/include/QtCore/qtdeprecationmarkers.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qtenvironmentvariables.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qtextstream.h \
-  D:/QT/6.8.1/mingw_64/include/QtCore/qtimer.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qtmetamacros.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qtnoop.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qtpreprocessorsupport.h \
@@ -362,31 +374,50 @@ D:/untitled5/cmake-build-debug/untitled5_autogen/EWIEGA46WW/moc_Tank.cpp: D:/unt
   D:/QT/6.8.1/mingw_64/include/QtCore/qtversionchecks.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qtypeinfo.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qtypes.h \
+  D:/QT/6.8.1/mingw_64/include/QtCore/qurl.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qutf8stringview.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qvariant.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qvarlengtharray.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qversiontagging.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qxptype_traits.h \
   D:/QT/6.8.1/mingw_64/include/QtCore/qyieldcpu.h \
+  D:/QT/6.8.1/mingw_64/include/QtGui/QKeyEvent \
+  D:/QT/6.8.1/mingw_64/include/QtGui/QTransform \
+  D:/QT/6.8.1/mingw_64/include/QtGui/qbrush.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qcolor.h \
+  D:/QT/6.8.1/mingw_64/include/QtGui/qevent.h \
+  D:/QT/6.8.1/mingw_64/include/QtGui/qeventpoint.h \
+  D:/QT/6.8.1/mingw_64/include/QtGui/qfont.h \
+  D:/QT/6.8.1/mingw_64/include/QtGui/qguiapplication.h \
+  D:/QT/6.8.1/mingw_64/include/QtGui/qguiapplication_platform.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qimage.h \
+  D:/QT/6.8.1/mingw_64/include/QtGui/qinputdevice.h \
+  D:/QT/6.8.1/mingw_64/include/QtGui/qinputmethod.h \
+  D:/QT/6.8.1/mingw_64/include/QtGui/qkeysequence.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qpaintdevice.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qpainterpath.h \
+  D:/QT/6.8.1/mingw_64/include/QtGui/qpen.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qpixelformat.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qpixmap.h \
+  D:/QT/6.8.1/mingw_64/include/QtGui/qpointingdevice.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qpolygon.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qregion.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qrgb.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qrgba64.h \
+  D:/QT/6.8.1/mingw_64/include/QtGui/qscreen.h \
+  D:/QT/6.8.1/mingw_64/include/QtGui/qscreen_platform.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qtgui-config.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qtguiexports.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qtguiglobal.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qtransform.h \
+  D:/QT/6.8.1/mingw_64/include/QtGui/qvector2d.h \
+  D:/QT/6.8.1/mingw_64/include/QtGui/qvectornd.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qwindowdefs.h \
   D:/QT/6.8.1/mingw_64/include/QtGui/qwindowdefs_win.h \
-  D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsRectItem \
+  D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsPixmapItem \
+  D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsScene \
   D:/QT/6.8.1/mingw_64/include/QtWidgets/qgraphicsitem.h \
+  D:/QT/6.8.1/mingw_64/include/QtWidgets/qgraphicsscene.h \
   D:/QT/6.8.1/mingw_64/include/QtWidgets/qtwidgets-config.h \
   D:/QT/6.8.1/mingw_64/include/QtWidgets/qtwidgetsexports.h \
-  D:/QT/6.8.1/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
-  D:/untitled5/Turret.h
+  D:/QT/6.8.1/mingw_64/include/QtWidgets/qtwidgetsglobal.h

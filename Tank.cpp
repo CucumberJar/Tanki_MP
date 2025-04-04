@@ -1,91 +1,94 @@
 #include "Tank.h"
-#include <QKeyEvent>
-#include <QtMath>
-#include <QGraphicsSceneMouseEvent>
-#include <QDebug>
+#include "Box.h"
+#include <QGraphicsScene>
+#include <QPixmap>
+#include <QTransform>
+#include <QTimer>
+#include <cmath>
+#include <QPainter>
 
-Tank::Tank() {
-    setRect(0, 0, 64, 128);
-    setTransformOriginPoint(32, 64);
-    setAcceptHoverEvents(true);
-    setAcceptedMouseButtons(Qt::AllButtons);
-    qDebug() << "Tank created!";
+Tank::Tank(QGraphicsScene *scene)
+        : speed(4), angle(0),
+          movingUp(false), movingDown(false),
+          rotatingLeft(false), rotatingRight(false)
+{
+    QPixmap originalPixmap("D:/untitled5/drawable/tank.png");
+    setPixmap(originalPixmap);
+    setTransformOriginPoint(pixmap().width() / 2, pixmap().height() / 2);
 
-    // Создаём и позиционируем башню
-    turret = new Turret(this);
-    turret->setPos(12, 32); // Смещение башни в центр верхней части
+    QTimer *timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &Tank::move);
+    timer->start(16);
 
-    moveTimer = new QTimer(this);
-    connect(moveTimer, &QTimer::timeout, this, &Tank::updateMovement);
-    moveTimer->start(16);
+    scene->addItem(this);
+    setPos(100, 100);
+    setFlag(QGraphicsItem::ItemIsFocusable);
+    setFocus();
 }
-
-void Tank::rotateTurret(const QPointF &cursorPosition) {
-    if (!turret) return;
-
-    // Передаём координаты курсора в башню, чтобы она сама обрабатывала поворот плавно
-    turret->rotateToCursor(cursorPosition);
-}
-
-
-
-void Tank::mouseMoveEvent(QGraphicsSceneMouseEvent* event) {
-    qDebug() << "Mouse moved at:" << event->scenePos();
-    turret->rotateToCursor(event->scenePos()); // Поворачиваем башню к курсору
-}
-
-
-
 
 void Tank::keyPressEvent(QKeyEvent *event) {
     switch (event->key()) {
-        case Qt::Key_W:
-            isMoving = true;
-            break;
-        case Qt::Key_A:
-            isRotatingLeft = true;
-            break;
-        case Qt::Key_D:
-            isRotatingRight = true;
-            break;
-        default:
-            break;
+        case Qt::Key_W: movingUp = true; break;
+        case Qt::Key_S: movingDown = true; break;
+        case Qt::Key_A: rotatingLeft = true; break;
+        case Qt::Key_D: rotatingRight = true; break;
     }
 }
 
 void Tank::keyReleaseEvent(QKeyEvent *event) {
     switch (event->key()) {
-        case Qt::Key_W:
-            isMoving = false;
-            break;
-        case Qt::Key_A:
-            isRotatingLeft = false;
-            break;
-        case Qt::Key_D:
-            isRotatingRight = false;
-            break;
-        default:
-            break;
+        case Qt::Key_W: movingUp = false; break;
+        case Qt::Key_S: movingDown = false; break;
+        case Qt::Key_A: rotatingLeft = false; break;
+        case Qt::Key_D: rotatingRight = false; break;
     }
 }
 
+QRectF Tank::boundingRect() const {
+    return QRectF(0, 0, pixmap().width(), pixmap().height());
+}
 
+void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
+    QGraphicsPixmapItem::paint(painter, option, widget);
+    // painter->setPen(QPen(Qt::red, 1));
+    // painter->drawRect(boundingRect());  // можно включить для отладки
+}
 
+void Tank::move() {
+    qreal newAngle = angle;
+    if (rotatingLeft)  newAngle -= 1;
+    if (rotatingRight) newAngle += 1;
 
-
-// Двигаем и поворачиваем танк одновременно
-void Tank::updateMovement() {
-    if (isRotatingLeft) {
-        setRotation(rotation() - rotationSpeed);
+    if (newAngle != angle) {
+        angle = newAngle;
+        setRotation(angle);
+        if (checkCollision()) {
+            angle = newAngle - (rotatingLeft ? -1 : 1);
+            setRotation(angle);
+        }
     }
-    if (isRotatingRight) {
-        setRotation(rotation() + rotationSpeed);
+
+    if (!movingUp && !movingDown) return;
+    qreal rad = qDegreesToRadians(angle);
+    QPointF delta;
+    if (movingUp) {
+        delta = QPointF(speed * std::sin(rad), -speed * std::cos(rad));
+    } else if (movingDown) {
+        delta = -QPointF(speed * std::sin(rad), -speed * std::cos(rad));
     }
-    if (isMoving) {
-        qreal angle = rotation();
-        qreal radians = qDegreesToRadians(angle);
-        qreal dx = speed * qSin(radians);
-        qreal dy = -speed * qCos(radians);
-        setPos(x() + dx, y() + dy);
+    QPointF newPos = pos() + delta;
+    setPos(newPos);
+    if (checkCollision()) {
+        setPos(pos() - delta);
     }
+}
+
+bool Tank::checkCollision() {
+    for (QGraphicsItem *item : scene()->collidingItems(this)) {
+        if (item == this) continue;
+        if (dynamic_cast<Box*>(item)) {
+            return true;
+        }
+    }
+    return false;
 }
