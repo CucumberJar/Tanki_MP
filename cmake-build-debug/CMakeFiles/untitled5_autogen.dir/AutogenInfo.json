@@ -229,6 +229,7 @@
 	"HEADERS" : 
 	[
 		[ "D:/untitled5/Box.h", "MU", "EWIEGA46WW/moc_Box.cpp", null ],
+		[ "D:/untitled5/Bullet.h", "MU", "EWIEGA46WW/moc_Bullet.cpp", null ],
 		[ "D:/untitled5/Game.h", "MU", "EWIEGA46WW/moc_Game.cpp", null ],
 		[ "D:/untitled5/Tank.h", "MU", "EWIEGA46WW/moc_Tank.cpp", null ],
 		[ "D:/untitled5/Turret.h", "MU", "EWIEGA46WW/moc_Turret.cpp", null ]
@@ -305,6 +306,7 @@
 	"SOURCES" : 
 	[
 		[ "D:/untitled5/Box.cpp", "MU", null ],
+		[ "D:/untitled5/Bullet.cpp", "MU", null ],
 		[ "D:/untitled5/Game.cpp", "MU", null ],
 		[ "D:/untitled5/Tank.cpp", "MU", null ],
 		[ "D:/untitled5/Turret.cpp", "MU", null ],

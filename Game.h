@@ -11,6 +11,8 @@ Q_OBJECT
 
 public:
     Game(QGraphicsScene *scene);
+protected:
+    void mousePressEvent(QMouseEvent *event) override;
 
 private:
     Tank *tank;

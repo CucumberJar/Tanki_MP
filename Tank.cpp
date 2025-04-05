@@ -12,7 +12,8 @@
 #include <QPainter>
 #include <QGraphicsSceneHoverEvent>
 #include <QLineF>
-
+#include "Bullet.h"
+#include <QGraphicsSceneMouseEvent>  // Обязательно!
 Tank::Tank(QGraphicsScene *scene)
         : speed(4), angle(0),
           movingUp(false), movingDown(false),
@@ -20,16 +21,15 @@ Tank::Tank(QGraphicsScene *scene)
 {
     QPixmap originalPixmap("D:/untitled5/drawable/tank.png");
     setPixmap(originalPixmap);
-    setTransformOriginPoint(pixmap().width() / 2, pixmap().height() / 2);
+    setTransformOriginPoint(pixmap().width()/2,pixmap().height()/2);
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Tank::move);
     timer->start(16);
     scene->addItem(this);
     turret = new Turret(this);
     turret->setZValue(1);
-
-// Центрируем башню по центру танка
-    turret->setPos(-15,14);
+    turret->setRotation(0);
+    turret->setPos(pixmap().width()/2-32,pixmap().height()/2-90);
 
     setAcceptHoverEvents(true);
 
@@ -37,43 +37,40 @@ Tank::Tank(QGraphicsScene *scene)
     setFlag(QGraphicsItem::ItemIsFocusable);
     setFocus();
 }
-
-
 void Tank::updateTurretRotation() {
     if (!turret) return;
 
-    // Центр башни в сцене
     QPointF turretCenter = turret->mapToScene(turret->boundingRect().center());
 
-    // Позиция курсора в сцене
+    // Исправленный расчёт позиции курсора
+    QGraphicsView *view = scene()->views().first();
     QPoint cursorPos = QCursor::pos();
-    QPointF cursorScenePos = scene()->views().first()->mapToScene(cursorPos);
+    QPoint cursorPosInView = view->viewport()->mapFromGlobal(cursorPos);
+    QPointF cursorScenePos = view->mapToScene(cursorPosInView);
 
-    // Направление от центра башни до курсора
-    QLineF lineToCursor(turretCenter, cursorScenePos);
-    qreal targetAngle = -lineToCursor.angle(); // Негативный угол для корректного вращения по часовой стрелке
+    QPointF direction = cursorScenePos - turretCenter;
+    qreal targetAngle = qRadiansToDegrees(std::atan2(direction.y(), direction.x()));
 
-    // Вычисляем угол для башни с учетом угла танка (когда танк поворачивается, башня также должна вращаться)
-    qreal turretAngle = targetAngle - angle;
+    // Учитываем поворот всего танка
+    qreal turretRelativeAngle = targetAngle - angle + 90;
 
-    // Ограничиваем скорость поворота башни
-    const qreal MAX_TURRET_ROTATION_SPEED = 5.0; // Максимальная скорость поворота в градусах
-    qreal deltaAngle = turretAngle - turret->rotation();
-    if (deltaAngle > 180) {
-        deltaAngle -= 360;
-    } else if (deltaAngle < -180) {
-        deltaAngle += 360;
-    }
+    // Нормализуем угол
+    while (turretRelativeAngle < -180) turretRelativeAngle += 360;
+    while (turretRelativeAngle > 180) turretRelativeAngle -= 360;
 
-    if (deltaAngle > MAX_TURRET_ROTATION_SPEED) {
-        deltaAngle = MAX_TURRET_ROTATION_SPEED;
-    } else if (deltaAngle < -MAX_TURRET_ROTATION_SPEED) {
-        deltaAngle = -MAX_TURRET_ROTATION_SPEED;
-    }
+    qreal deltaAngle = turretRelativeAngle - turret->rotation();
+    while (deltaAngle < -180) deltaAngle += 360;
+    while (deltaAngle > 180) deltaAngle -= 360;
 
-    // Поворачиваем башню
+    const qreal MAX_TURRET_ROTATION_SPEED = 5.0;
+    if (deltaAngle > MAX_TURRET_ROTATION_SPEED) deltaAngle = MAX_TURRET_ROTATION_SPEED;
+    if (deltaAngle < -MAX_TURRET_ROTATION_SPEED) deltaAngle = -MAX_TURRET_ROTATION_SPEED;
+
     turret->setRotation(turret->rotation() + deltaAngle);
 }
+
+
+
 
 
 
@@ -99,10 +96,32 @@ QRectF Tank::boundingRect() const {
     return QRectF(0, 0, pixmap().width(), pixmap().height());
 }
 
+
+
+#include "Bullet.h"  // если у тебя класс пули в другом файле
+
+void Tank::shoot()
+{
+    // Создаём пулю под углом, под которым башня смотрит
+    Bullet *bullet = new Bullet(turret->rotation() + angle);
+
+    // Берём глобальную позицию центра башни
+    QPointF turretCenter = turret->mapToScene(turret->boundingRect().center());
+
+    // Ставим пулю в это место
+    bullet->setPos(turretCenter);
+
+    scene()->addItem(bullet);
+}
+
+
+
+
+
 void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
     QGraphicsPixmapItem::paint(painter, option, widget);
-    // painter->setPen(QPen(Qt::red, 1));
-    // painter->drawRect(boundingRect());  // можно включить для отладки
+     painter->setPen(QPen(Qt::red, 1));
+     painter->drawRect(boundingRect());
 }
 
 void Tank::move() {

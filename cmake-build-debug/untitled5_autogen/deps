@@ -287,6 +287,7 @@ untitled5_autogen/timestamp: \
 	D:/QT/6.8.1/mingw_64/include/QtCore/QRect \
 	D:/QT/6.8.1/mingw_64/include/QtCore/QSize \
 	D:/QT/6.8.1/mingw_64/include/QtCore/QSizeF \
+	D:/QT/6.8.1/mingw_64/include/QtCore/QTimer \
 	D:/QT/6.8.1/mingw_64/include/QtCore/q20functional.h \
 	D:/QT/6.8.1/mingw_64/include/QtCore/q20iterator.h \
 	D:/QT/6.8.1/mingw_64/include/QtCore/q20memory.h \
@@ -301,6 +302,7 @@ untitled5_autogen/timestamp: \
 	D:/QT/6.8.1/mingw_64/include/QtCore/qatomic.h \
 	D:/QT/6.8.1/mingw_64/include/QtCore/qatomic_cxx11.h \
 	D:/QT/6.8.1/mingw_64/include/QtCore/qbasicatomic.h \
+	D:/QT/6.8.1/mingw_64/include/QtCore/qbasictimer.h \
 	D:/QT/6.8.1/mingw_64/include/QtCore/qbindingstorage.h \
 	D:/QT/6.8.1/mingw_64/include/QtCore/qbytearray.h \
 	D:/QT/6.8.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
@@ -400,6 +402,7 @@ untitled5_autogen/timestamp: \
 	D:/QT/6.8.1/mingw_64/include/QtCore/qtdeprecationmarkers.h \
 	D:/QT/6.8.1/mingw_64/include/QtCore/qtenvironmentvariables.h \
 	D:/QT/6.8.1/mingw_64/include/QtCore/qtextstream.h \
+	D:/QT/6.8.1/mingw_64/include/QtCore/qtimer.h \
 	D:/QT/6.8.1/mingw_64/include/QtCore/qtmetamacros.h \
 	D:/QT/6.8.1/mingw_64/include/QtCore/qtnoop.h \
 	D:/QT/6.8.1/mingw_64/include/QtCore/qtpreprocessorsupport.h \
@@ -459,6 +462,7 @@ untitled5_autogen/timestamp: \
 	D:/QT/6.8.1/mingw_64/include/QtGui/qvectornd.h \
 	D:/QT/6.8.1/mingw_64/include/QtGui/qwindowdefs.h \
 	D:/QT/6.8.1/mingw_64/include/QtGui/qwindowdefs_win.h \
+	D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsItem \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsPixmapItem \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsScene \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsSceneHoverEvent \
@@ -615,6 +619,8 @@ untitled5_autogen/timestamp: \
 	D:/QT/6.8.1/mingw_64/lib/cmake/Qt6ZlibPrivate/Qt6ZlibPrivateVersionlessAliasTargets.cmake \
 	D:/untitled5/Box.cpp \
 	D:/untitled5/Box.h \
+	D:/untitled5/Bullet.cpp \
+	D:/untitled5/Bullet.h \
 	D:/untitled5/CMakeLists.txt \
 	D:/untitled5/Game.cpp \
 	D:/untitled5/Game.h \

@@ -97,6 +97,14 @@ build CMakeFiles/untitled5.dir/Turret.cpp.obj: CXX_COMPILER__untitled5_unscanned
   OBJECT_DIR = CMakeFiles\untitled5.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled5.dir
 
+build CMakeFiles/untitled5.dir/Bullet.cpp.obj: CXX_COMPILER__untitled5_unscanned_Debug D$:/untitled5/Bullet.cpp || cmake_object_order_depends_target_untitled5
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\untitled5.dir\Bullet.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -ID:/untitled5/cmake-build-debug/untitled5_autogen/include -isystem D:/QT/6.8.1/mingw_64/include/QtCore -isystem D:/QT/6.8.1/mingw_64/include -isystem D:/QT/6.8.1/mingw_64/mkspecs/win32-g++ -isystem D:/QT/6.8.1/mingw_64/include/QtGui -isystem D:/QT/6.8.1/mingw_64/include/QtWidgets
+  OBJECT_DIR = CMakeFiles\untitled5.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled5.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target untitled5
@@ -105,7 +113,7 @@ build CMakeFiles/untitled5.dir/Turret.cpp.obj: CXX_COMPILER__untitled5_unscanned
 #############################################
 # Link the executable untitled5.exe
 
-build untitled5.exe: CXX_EXECUTABLE_LINKER__untitled5_Debug CMakeFiles/untitled5.dir/untitled5_autogen/mocs_compilation.cpp.obj CMakeFiles/untitled5.dir/main.cpp.obj CMakeFiles/untitled5.dir/Tank.cpp.obj CMakeFiles/untitled5.dir/Game.cpp.obj CMakeFiles/untitled5.dir/Box.cpp.obj CMakeFiles/untitled5.dir/Turret.cpp.obj | D$:/QT/6.8.1/mingw_64/lib/libQt6Widgets.a D$:/QT/6.8.1/mingw_64/lib/libQt6Gui.a D$:/QT/6.8.1/mingw_64/lib/libQt6Core.a || untitled5_autogen untitled5_autogen_timestamp_deps
+build untitled5.exe: CXX_EXECUTABLE_LINKER__untitled5_Debug CMakeFiles/untitled5.dir/untitled5_autogen/mocs_compilation.cpp.obj CMakeFiles/untitled5.dir/main.cpp.obj CMakeFiles/untitled5.dir/Tank.cpp.obj CMakeFiles/untitled5.dir/Game.cpp.obj CMakeFiles/untitled5.dir/Box.cpp.obj CMakeFiles/untitled5.dir/Turret.cpp.obj CMakeFiles/untitled5.dir/Bullet.cpp.obj | D$:/QT/6.8.1/mingw_64/lib/libQt6Widgets.a D$:/QT/6.8.1/mingw_64/lib/libQt6Gui.a D$:/QT/6.8.1/mingw_64/lib/libQt6Core.a || untitled5_autogen untitled5_autogen_timestamp_deps
   FLAGS = -g
   LINK_LIBRARIES = D:/QT/6.8.1/mingw_64/lib/libQt6Widgets.a  D:/QT/6.8.1/mingw_64/lib/libQt6Gui.a  D:/QT/6.8.1/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -ld3d11  -ldxgi  -ldxguid  -ld3d12  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\untitled5.dir

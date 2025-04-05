@@ -18,6 +18,8 @@ int main(int argc, char *argv[])
     scene.addItem(new Box(300, 400));
     scene.addItem(new Box(300, 500));
     scene.addItem(new Box(500, 200));
+    scene.setSceneRect(0, 0, 800, 600); // размер сцены 800x600
+
     scene.addItem(new Box(400, 400));
     Game gameWindow(&scene);
     gameWindow.show();

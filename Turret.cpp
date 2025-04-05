@@ -5,11 +5,9 @@
 Turret::Turret(QGraphicsItem *parent)
         : QObject(), QGraphicsPixmapItem(parent)
 {
-    QPixmap turretPixmap("D:/untitled5/drawable/tower.png");
+    QPixmap turretPixmap("D:/untitled5/drawable/turret.png");
     setPixmap(turretPixmap);
-
-    // Центр вращения — центр изображения
-    setTransformOriginPoint(47, 32);
+    setTransformOriginPoint(turretPixmap.width()/2, turretPixmap.height()/2);
 }
 
 void Turret::rotateTo(qreal angle)

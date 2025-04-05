@@ -21,6 +21,10 @@ public:
     void rotateRight();
     void updateMovement();
     void setRotationSpeed(double speed);
+    void shoot();
+protected:
+
+
 
 private:
     Turret *turret;
@@ -42,6 +46,7 @@ private:
 
 
     void updateTurretRotation();
+
 };
 
 #endif
