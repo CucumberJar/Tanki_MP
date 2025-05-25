@@ -1,29 +1,14 @@
-#ifndef GAME_H
-#define GAME_H
+#pragma once
+#include <QObject>
+#include "GameScene.h"
+#include "GameView.h"
 
-#include <QGraphicsView>
-#include <QGraphicsScene>
-#include "Tank.h"
-
-class Game : public QGraphicsView
-{
-Q_OBJECT
-
+class Game : public QObject {
+Q_OBJECT  // обязательно, если будут сигналы/слоты
 public:
-    Game(QGraphicsScene *scene);
-protected:
-    void mousePressEvent(QMouseEvent *event) override;
-
+    Game();
+    void start();
 private:
-    Tank *tank;
-
-    // Флаги для отслеживания нажатых клавиш
-    bool movingUp;
-    bool movingDown;
-    bool rotatingLeft;
-    bool rotatingRight;
-
-    void advance(int phase);
+    GameScene *scene;
+    GameView *view;
 };
-
-#endif // GAME_H

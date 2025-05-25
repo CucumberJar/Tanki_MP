@@ -8,11 +8,29 @@ set(CMAKE_AUTOUIC ON)
 
 set(CMAKE_PREFIX_PATH "D:/QT/6.8.1/mingw_64")
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Network)
+include_directories(
+        src
+        src/entities
+        src/main
+)
 
-add_executable(untitled5 main.cpp Tank.cpp Game.cpp Box.cpp Turret.cpp Bullet.cpp)
+add_executable(untitled5
+        main.cpp
+        src/tank/entities/Tank.cpp
+        Game.cpp
+        Wall.cpp
+        Turret.cpp
+        Bullet.cpp
+        Tile.cpp
+        TankClient.cpp
+        src/main/GameLoad.cpp
+        src/main/GameView.cpp
+        src/main/GameScene.cpp
 
-target_link_libraries(untitled5 Qt6::Core Qt6::Gui Qt6::Widgets)
+)
+
+target_link_libraries(untitled5 Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network)
 
 if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     set(DEBUG_SUFFIX "")

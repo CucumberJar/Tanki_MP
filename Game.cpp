@@ -1,21 +1,34 @@
 #include "Game.h"
-#include "Box.h"
-#include <QKeyEvent>
-#include <QMouseEvent> // не забудь подключить
-Game::Game(QGraphicsScene *scene) : QGraphicsView(scene)
-{
-    tank = new Tank(scene);
-    setFocus();
-    movingUp = movingDown = rotatingLeft = rotatingRight = false;
+#include "GameLoad.h"
+#include "tank/entities/Tank.h"
+#include "TankClient.h"
+#include <QObject>
+#include <QUuid>
+#include <QDebug>
+
+Game::Game() {
+    scene = new GameScene();
+    view = new GameView(scene);
 }
 
+void Game::start() {
+    auto* client = new TankClient(this);
 
+    // Подключаем клиент к сцене
+    scene->setClient(client);
 
-void Game::mousePressEvent(QMouseEvent *event)
-{
-    if (tank) {
-        tank->shoot(); // когда мышь нажали — танк стреляет
-    }
+    // Подключение только одного сигнала недостаточно!
+    connect(client, &TankClient::spawnTank, scene, &GameScene::onSpawnTank);
+    connect(client, &TankClient::moveTank, scene, &GameScene::onMoveTank);
 
-    QGraphicsView::mousePressEvent(event); // если хочешь, чтобы мышь дальше работала
+    client->connectToServer("192.168.1.2", 12345);
+
+    // Генерируем уникальный ID
+    QString playerId = QUuid::createUuid().toString(QUuid::WithoutBraces);
+    client->sendJoinMessage(playerId);
+
+    scene->setLocalPlayerId(playerId);
+
+    GameLoad loader(scene, view);
+    view->show();
 }

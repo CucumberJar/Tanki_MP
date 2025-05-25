@@ -2,15 +2,18 @@
 #include <QtMath>
 #include <QPainter>
 #include <QGraphicsScene>
+#include <QWidget>
 
 Bullet::Bullet(qreal angle)
-        : angle(angle), speed(8), radius(5)  // радиус шара
+        : angle(angle), speed(10), radius(4)  // радиус шара
 {
     setRotation(angle);
 
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Bullet::move);
     timer->start(16); // ~60 FPS
+    setFlag(QGraphicsItem::ItemIsFocusable, false); // Пуля НЕ фокусируется
+
 }
 
 QRectF Bullet::boundingRect() const

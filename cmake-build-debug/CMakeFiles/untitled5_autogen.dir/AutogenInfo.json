@@ -220,7 +220,37 @@
 		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginTargets.cmake",
 		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginTargets-relwithdebinfo.cmake",
 		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginAdditionalTargetInfo.cmake",
-		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsVersionlessAliasTargets.cmake"
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsVersionlessAliasTargets.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfigVersion.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfigVersionImpl.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfig.cmake",
+		"D:/Program/IDE/CLion/CLion 2024.3.1.1/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6NetworkDependencies.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6NetworkTargets.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6NetworkTargets-relwithdebinfo.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6NetworkAdditionalTargetInfo.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6NetworkPlugins.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginConfig.cmake",
+		"D:/Program/IDE/CLion/CLion 2024.3.1.1/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginTargets.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginTargets-relwithdebinfo.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginAdditionalTargetInfo.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginConfig.cmake",
+		"D:/Program/IDE/CLion/CLion 2024.3.1.1/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginTargets.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginTargets-relwithdebinfo.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginAdditionalTargetInfo.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginConfig.cmake",
+		"D:/Program/IDE/CLion/CLion 2024.3.1.1/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginTargets.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginTargets-relwithdebinfo.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginAdditionalTargetInfo.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginConfig.cmake",
+		"D:/Program/IDE/CLion/CLion 2024.3.1.1/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets-relwithdebinfo.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginAdditionalTargetInfo.cmake",
+		"D:/QT/6.8.1/mingw_64/lib/cmake/Qt6Network/Qt6NetworkVersionlessAliasTargets.cmake"
 	],
 	"CMAKE_SOURCE_DIR" : "D:/untitled5",
 	"CROSS_CONFIG" : false,
@@ -228,11 +258,41 @@
 	"DEP_FILE_RULE_NAME" : "untitled5_autogen/timestamp",
 	"HEADERS" : 
 	[
-		[ "D:/untitled5/Box.h", "MU", "EWIEGA46WW/moc_Box.cpp", null ],
 		[ "D:/untitled5/Bullet.h", "MU", "EWIEGA46WW/moc_Bullet.cpp", null ],
 		[ "D:/untitled5/Game.h", "MU", "EWIEGA46WW/moc_Game.cpp", null ],
-		[ "D:/untitled5/Tank.h", "MU", "EWIEGA46WW/moc_Tank.cpp", null ],
-		[ "D:/untitled5/Turret.h", "MU", "EWIEGA46WW/moc_Turret.cpp", null ]
+		[
+			"D:/untitled5/TankClient.h",
+			"MU",
+			"EWIEGA46WW/moc_TankClient.cpp",
+			null
+		],
+		[ "D:/untitled5/Tile.h", "MU", "EWIEGA46WW/moc_Tile.cpp", null ],
+		[ "D:/untitled5/Turret.h", "MU", "EWIEGA46WW/moc_Turret.cpp", null ],
+		[ "D:/untitled5/Wall.h", "MU", "EWIEGA46WW/moc_Wall.cpp", null ],
+		[
+			"D:/untitled5/src/main/GameLoad.h",
+			"MU",
+			"LEASYKLKX4/moc_GameLoad.cpp",
+			null
+		],
+		[
+			"D:/untitled5/src/main/GameScene.h",
+			"MU",
+			"LEASYKLKX4/moc_GameScene.cpp",
+			null
+		],
+		[
+			"D:/untitled5/src/main/GameView.h",
+			"MU",
+			"LEASYKLKX4/moc_GameView.cpp",
+			null
+		],
+		[
+			"D:/untitled5/src/tank/entities/Tank.h",
+			"MU",
+			"NPUFPRYKBF/moc_Tank.cpp",
+			null
+		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "D:/untitled5/cmake-build-debug/untitled5_autogen/include",
@@ -242,6 +302,7 @@
 		"MINGW_HAS_SECURE_API=1",
 		"QT_CORE_LIB",
 		"QT_GUI_LIB",
+		"QT_NETWORK_LIB",
 		"QT_WIDGETS_LIB",
 		"UNICODE",
 		"WIN32",
@@ -259,11 +320,15 @@
 	],
 	"MOC_INCLUDES" : 
 	[
+		"D:/untitled5/src",
+		"D:/untitled5/src/entities",
+		"D:/untitled5/src/main",
 		"D:/QT/6.8.1/mingw_64/include/QtCore",
 		"D:/QT/6.8.1/mingw_64/include",
 		"D:/QT/6.8.1/mingw_64/mkspecs/win32-g++",
 		"D:/QT/6.8.1/mingw_64/include/QtGui",
 		"D:/QT/6.8.1/mingw_64/include/QtWidgets",
+		"D:/QT/6.8.1/mingw_64/include/QtNetwork",
 		"D:/Program/IDE/CLion/CLion 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++",
 		"D:/Program/IDE/CLion/CLion 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32",
 		"D:/Program/IDE/CLion/CLion 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward",
@@ -305,12 +370,17 @@
 	"SETTINGS_FILE" : "D:/untitled5/cmake-build-debug/CMakeFiles/untitled5_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "D:/untitled5/Box.cpp", "MU", null ],
 		[ "D:/untitled5/Bullet.cpp", "MU", null ],
 		[ "D:/untitled5/Game.cpp", "MU", null ],
-		[ "D:/untitled5/Tank.cpp", "MU", null ],
+		[ "D:/untitled5/TankClient.cpp", "MU", null ],
+		[ "D:/untitled5/Tile.cpp", "MU", null ],
 		[ "D:/untitled5/Turret.cpp", "MU", null ],
-		[ "D:/untitled5/main.cpp", "MU", null ]
+		[ "D:/untitled5/Wall.cpp", "MU", null ],
+		[ "D:/untitled5/main.cpp", "MU", null ],
+		[ "D:/untitled5/src/main/GameLoad.cpp", "MU", null ],
+		[ "D:/untitled5/src/main/GameScene.cpp", "MU", null ],
+		[ "D:/untitled5/src/main/GameView.cpp", "MU", null ],
+		[ "D:/untitled5/src/tank/entities/Tank.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
