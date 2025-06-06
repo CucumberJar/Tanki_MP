@@ -13,9 +13,11 @@ include_directories(
         src
         src/entities
         src/main
+        src/main/ui
 )
 
 add_executable(untitled5
+        src/main/ui/ConnectionWindow.cpp
         main.cpp
         src/tank/entities/Tank.cpp
         Game.cpp

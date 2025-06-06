@@ -8,6 +8,7 @@ class TankClient : public QObject {
 Q_OBJECT
 
 public:
+    void setLocalPlayerId(const QString &id);
     explicit TankClient(QObject *parent = nullptr);
     void connectToServer(const QString &ip, quint16 port);
     void sendJoinMessage(const QString &id);
@@ -27,6 +28,7 @@ private slots:
 private:
     QTcpSocket *socket;
     QString localPlayerId;
+
 
 
 };

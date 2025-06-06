@@ -455,6 +455,9 @@ untitled5_autogen/timestamp: \
 	D:/QT/6.8.1/mingw_64/include/QtGui/qrgba64.h \
 	D:/QT/6.8.1/mingw_64/include/QtGui/qscreen.h \
 	D:/QT/6.8.1/mingw_64/include/QtGui/qscreen_platform.h \
+	D:/QT/6.8.1/mingw_64/include/QtGui/qtextcursor.h \
+	D:/QT/6.8.1/mingw_64/include/QtGui/qtextdocument.h \
+	D:/QT/6.8.1/mingw_64/include/QtGui/qtextformat.h \
 	D:/QT/6.8.1/mingw_64/include/QtGui/qtextoption.h \
 	D:/QT/6.8.1/mingw_64/include/QtGui/qtgui-config.h \
 	D:/QT/6.8.1/mingw_64/include/QtGui/qtguiexports.h \
@@ -476,12 +479,18 @@ untitled5_autogen/timestamp: \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsScene \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsSceneHoverEvent \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/QGraphicsView \
+	D:/QT/6.8.1/mingw_64/include/QtWidgets/QLineEdit \
+	D:/QT/6.8.1/mingw_64/include/QtWidgets/QPushButton \
+	D:/QT/6.8.1/mingw_64/include/QtWidgets/QWidget \
+	D:/QT/6.8.1/mingw_64/include/QtWidgets/qabstractbutton.h \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/qabstractscrollarea.h \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/qframe.h \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/qgraphicsitem.h \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/qgraphicsscene.h \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/qgraphicssceneevent.h \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/qgraphicsview.h \
+	D:/QT/6.8.1/mingw_64/include/QtWidgets/qlineedit.h \
+	D:/QT/6.8.1/mingw_64/include/QtWidgets/qpushbutton.h \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/qscrollarea.h \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/qsizepolicy.h \
 	D:/QT/6.8.1/mingw_64/include/QtWidgets/qtwidgets-config.h \
@@ -676,6 +685,8 @@ untitled5_autogen/timestamp: \
 	D:/untitled5/src/main/GameScene.h \
 	D:/untitled5/src/main/GameView.cpp \
 	D:/untitled5/src/main/GameView.h \
+	D:/untitled5/src/main/ui/ConnectionWindow.cpp \
+	D:/untitled5/src/main/ui/ConnectionWindow.h \
 	D:/untitled5/src/tank/entities/Tank.cpp \
 	D:/untitled5/src/tank/entities/Tank.h \
 	D:/Program/IDE/CLion/CLion\ 2024.3.1.1/bin/cmake/win/x64/bin/cmake.exe

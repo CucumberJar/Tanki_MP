@@ -4,4 +4,5 @@
 #include "EWIEGA46WW/moc_TankClient.cpp"
 #include "EWIEGA46WW/moc_Turret.cpp"
 #include "LEASYKLKX4/moc_GameScene.cpp"
+#include "IWFA6LESXK/moc_ConnectionWindow.cpp"
 #include "NPUFPRYKBF/moc_Tank.cpp"

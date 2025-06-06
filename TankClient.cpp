@@ -14,35 +14,46 @@ TankClient::TankClient(QObject *parent) : QObject(parent) {
 }
 
 void TankClient::connectToServer(const QString &ip, quint16 port) {
-    qDebug() << "[TankClient] Connecting to server at" << ip << ":" << port;
+    qDebug() << "[TankClient] Attempting to connect to server at" << ip << ":" << port;
     socket->connectToHost(ip, port);
 }
 
 void TankClient::sendJoinMessage(const QString &id) {
     localPlayerId = id;
+    qDebug() << "[TankClient] Preparing to send JOIN message. Socket state:" << socket->state();
     if (socket->state() == QAbstractSocket::ConnectedState) {
         QString message = QString("JOIN;%1\n").arg(id);
-        socket->write(message.toUtf8());
-        socket->flush();
+        qDebug() << "[TankClient] Sending join message:" << message.trimmed();
+        qint64 written = socket->write(message.toUtf8());
+        bool flushed = socket->flush();
+        qDebug() << "[TankClient] Bytes written:" << written << ", flush status:" << flushed;
     } else {
-        qWarning() << "[TankClient] Not connected to server!";
+        qWarning() << "[TankClient] Cannot send JOIN, socket not connected!";
     }
 }
 
 void TankClient::onConnected() {
-    qDebug() << "[TankClient] Connected.";
-    sendJoinMessage(localPlayerId);
+    qDebug() << "[TankClient] Connected to server.";
+    if (!localPlayerId.isEmpty()) {
+        qDebug() << "[TankClient] Sending join message on connection.";
+        sendJoinMessage(localPlayerId);
+    } else {
+        qWarning() << "[TankClient] localPlayerId is empty at connection time!";
+    }
 }
 
 void TankClient::onReadyRead() {
+    qDebug() << "[TankClient] Data available to read.";
     while (socket->canReadLine()) {
         QString msg = QString::fromUtf8(socket->readLine()).trimmed();
+        qDebug() << "[TankClient] Received message:" << msg;
         if (msg.startsWith("SPAWN;")) {
             QStringList parts = msg.split(';');
             if (parts.size() == 4) {
                 QString id = parts[1];
                 int x = parts[2].toInt();
                 int y = parts[3].toInt();
+                qDebug() << "[TankClient] Emitting spawnTank signal with id:" << id << "x:" << x << "y:" << y;
                 emit spawnTank(id, x, y);
             }
         } else if (msg.startsWith("MOVE;")) {
@@ -52,6 +63,7 @@ void TankClient::onReadyRead() {
                 qreal x = parts[2].toDouble();
                 qreal y = parts[3].toDouble();
                 qreal angle = parts[4].toDouble();
+                qDebug() << "[TankClient] Emitting moveTank signal with id:" << id << "x:" << x << "y:" << y << "angle:" << angle;
                 emit moveTank(id, x, y, angle);
             }
         }
@@ -59,19 +71,30 @@ void TankClient::onReadyRead() {
 }
 
 void TankClient::onDisconnected() {
-    qDebug() << "[TankClient] Disconnected.";
+    qDebug() << "[TankClient] Disconnected from server.";
 }
 
 void TankClient::sendRawMessage(const QString &msg) {
+    qDebug() << "[TankClient] Preparing to send raw message. Socket state:" << socket->state();
     if (socket->state() == QAbstractSocket::ConnectedState) {
-        socket->write(msg.toUtf8());
-        socket->flush();
+        qint64 written = socket->write(msg.toUtf8());
+        bool flushed = socket->flush();
+        qDebug() << "[TankClient] Raw message sent. Bytes written:" << written << ", flush status:" << flushed;
+    } else {
+        qWarning() << "[TankClient] Cannot send raw message, socket not connected!";
     }
 }
+
 void TankClient::onErrorOccurred(QAbstractSocket::SocketError socketError) {
-    qWarning() << "[TankClient] Socket error:" << socketError;
+    qWarning() << "[TankClient] Socket error:" << socketError
+               << "-" << socket->errorString();
 }
 
 void TankClient::onStateChanged(QAbstractSocket::SocketState state) {
-    qDebug() << "[TankClient] State changed to:" << state;
+    qDebug() << "[TankClient] Socket state changed to:" << state;
 }
+
+void TankClient::setLocalPlayerId(const QString &id) {
+    localPlayerId = id;
+}
+

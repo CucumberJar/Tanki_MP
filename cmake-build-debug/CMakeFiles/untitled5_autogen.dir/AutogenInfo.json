@@ -288,6 +288,12 @@
 			null
 		],
 		[
+			"D:/untitled5/src/main/ui/ConnectionWindow.h",
+			"MU",
+			"IWFA6LESXK/moc_ConnectionWindow.cpp",
+			null
+		],
+		[
 			"D:/untitled5/src/tank/entities/Tank.h",
 			"MU",
 			"NPUFPRYKBF/moc_Tank.cpp",
@@ -323,6 +329,7 @@
 		"D:/untitled5/src",
 		"D:/untitled5/src/entities",
 		"D:/untitled5/src/main",
+		"D:/untitled5/src/main/ui",
 		"D:/QT/6.8.1/mingw_64/include/QtCore",
 		"D:/QT/6.8.1/mingw_64/include",
 		"D:/QT/6.8.1/mingw_64/mkspecs/win32-g++",
@@ -380,6 +387,7 @@
 		[ "D:/untitled5/src/main/GameLoad.cpp", "MU", null ],
 		[ "D:/untitled5/src/main/GameScene.cpp", "MU", null ],
 		[ "D:/untitled5/src/main/GameView.cpp", "MU", null ],
+		[ "D:/untitled5/src/main/ui/ConnectionWindow.cpp", "MU", null ],
 		[ "D:/untitled5/src/tank/entities/Tank.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],

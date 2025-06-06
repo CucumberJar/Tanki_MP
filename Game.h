@@ -4,11 +4,15 @@
 #include "GameView.h"
 
 class Game : public QObject {
-Q_OBJECT  // обязательно, если будут сигналы/слоты
+Q_OBJECT
 public:
-    Game();
+    explicit Game(const QString& nickname, const QString& serverIP, QObject *parent = nullptr);
     void start();
+
 private:
+    QString nickname;
+    QString serverIP;
+
     GameScene *scene;
     GameView *view;
 };
