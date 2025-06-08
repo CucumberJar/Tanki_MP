@@ -2,6 +2,8 @@
 #include "../../../Wall.h"
 #include "../../../Turret.h"
 #include "../../../Bullet.h"
+#include "Base.h"
+#include "Stone.h"
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -14,15 +16,14 @@
 Tank::Tank(bool isLocal, const QString &id, TankClient *clientPtr)
         : QObject(), QGraphicsPixmapItem(), isLocalTank(isLocal), playerId(id), client(clientPtr) {
 
-    QPixmap originalPixmap("../drawable/tank.png");
+    QPixmap originalPixmap("../drawable/tank1.png");
     setPixmap(originalPixmap);
     setTransformOriginPoint(pixmap().width() / 2, pixmap().height() / 2);
-
     turret = new Turret(this);
-    turret->setZValue(1);
+
+    turret->setZValue(10);
     turret->setRotation(0);
     turret->setPos(pixmap().width() / 2 - 32, pixmap().height() / 2 - 90);
-
     setFlag(QGraphicsItem::ItemIsFocusable);
     if (isLocalTank) {
         setFocus();
@@ -30,7 +31,14 @@ Tank::Tank(bool isLocal, const QString &id, TankClient *clientPtr)
 
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Tank::move);
-    timer->start(16);
+    timer->start(10);
+    shootCooldownTimer = new QTimer(this);
+    shootCooldownTimer->setInterval(500);
+    shootCooldownTimer->setSingleShot(true);
+    connect(shootCooldownTimer, &QTimer::timeout, [this]() {
+        canShoot = true;
+    });
+    canShoot = true;
 }
 
 void Tank::updateTurretRotation() {
@@ -75,7 +83,7 @@ void Tank::keyReleaseEvent(QKeyEvent *event) {
 }
 
 void Tank::move() {
-    if (!isLocalTank) return;
+    if (isLocalTank) {
     if (!hasFocus()) setFocus();
     updateTurretRotation();
 
@@ -103,15 +111,22 @@ void Tank::move() {
     }
 
     if (isLocalTank && client) {
-        QString msg = QString("MOVE;%1;%2;%3;%4\n")
-                .arg(playerId)
-                .arg(pos().x())
-                .arg(pos().y())
-                .arg(angle);
-        client->getSocket()->write(msg.toUtf8());
-        client->getSocket()->flush();
+        QPointF currentPos = pos();
+        if (currentPos != lastSentPos || angle != lastSentAngle) {
+            QString msg = QString("MOVE;%1;%2;%3;%4\n")
+                    .arg(playerId)
+                    .arg(currentPos.x())
+                    .arg(currentPos.y())
+                    .arg(angle);
+            client->getSocket()->write(msg.toUtf8());
+            client->getSocket()->flush();
+
+            lastSentPos = currentPos;
+            lastSentAngle = angle;
+        }
     }
-}
+
+}}
 
 QRectF Tank::boundingRect() const {
     return QRectF(0, 0, pixmap().width(), pixmap().height());
@@ -121,18 +136,45 @@ void Tank::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     QGraphicsPixmapItem::paint(painter, option, widget);
 }
 
-void Tank::shoot() {
+void Tank::shoot()
+{
+    if (!canShoot)
+        return;  // не стрелять, если в кулдауне
+
+    canShoot = false;
+    shootCooldownTimer->start();
+    // Создаём пулю под углом, под которым башня смотрит
     Bullet *bullet = new Bullet(turret->rotation() + angle);
-    bullet->setZValue(-1);
-    QPointF barrelTip = turret->mapToScene(QPointF(turret->boundingRect().width() / 2, 0));
-    bullet->setPos(barrelTip);
+    // Берём глобальную позицию центра башни
+    QPointF turretCenter = turret->mapToScene(turret->boundingRect().center());
+
+    // Ставим пулю в это место
+    bullet->setPos(turretCenter);
+    bullet->setZValue(0);
+
     scene()->addItem(bullet);
 }
-
 bool Tank::checkCollision() {
+    if (!scene()) return false;
+
     for (QGraphicsItem *item : scene()->collidingItems(this)) {
         if (item == this) continue;
+        if (dynamic_cast<Tank *>(item)) return true;
         if (dynamic_cast<Wall *>(item)) return true;
+        if (dynamic_cast<Stone *>(item)) return true;
+        if (Base *base = dynamic_cast<Base *>(item)) {
+            int newTeam = 0;
+            if (base->getTeam() != newTeam) {
+                this->speed += 0.2;
+                int oldTeam= base->getTeam();
+                base->setTeam(newTeam);
+                if (client) {
+                    QString msg = QString("CAPTURE;%1;%2\n").arg(oldTeam).arg(newTeam);
+                    client->sendRawMessage(msg);
+                }
+            }
+        }
     }
     return false;
 }
+

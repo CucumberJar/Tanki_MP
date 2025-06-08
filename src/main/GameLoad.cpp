@@ -1,11 +1,13 @@
 #include <QtWidgets>
 #include "GameLoad.h"
 #include "GameScene.h"
+#include "Stone.h"
+
 
 GameLoad::GameLoad(GameScene * scene, GameView * view) {
     this->scene = scene;
     this->view=view;
-    QString map = "../map.tmj";
+    QString map = "../desert.tmj";
     loadMap(map);
 }
 
@@ -42,11 +44,21 @@ void GameLoad::loadMap(const QString &filename) {
                     int tileId = data[index].toInt();
                     if (tileId > 0) {
                         QPixmap tilePixmap = getTilePixmap(tileId);
-                        if (tileId == 6) { // Пример: добавление стены
+                        if (tileId == 3) { // Пример: добавление стены
                             Wall *wall = new Wall(x, y);
                             scene->addItem(wall);
                         }
-                        if (!tilePixmap.isNull()) {
+                        if (tileId==15){
+                            Base *base = new Base(x,y);
+                            base->setZValue(layer["id"].toInt() - 2);
+                            scene->addItem(base);
+                        } else
+                        if (tileId==2){
+                            Stone *stone = new Stone(x,y);
+                            stone->setZValue(layer["id"].toInt() - 2);
+                            scene->addItem(stone);
+                        } else
+                        if (!tilePixmap.isNull()&&tileId!=3&&tileId!=2) {
                             Tile *tile = new Tile(x * tileWidth, y * tileHeight, tilePixmap);
                             tile->setZValue(layer["id"].toInt() - 2); // Настройка глубины отрисовки
                             scene->addItem(tile);

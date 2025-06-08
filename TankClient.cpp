@@ -1,7 +1,7 @@
 #include "TankClient.h"
 #include <QDebug>
 
-TankClient::TankClient(QObject *parent) : QObject(parent) {
+TankClient::TankClient(Game *parent) : QObject(parent) {
     socket = new QTcpSocket(this);
 
     connect(socket, &QTcpSocket::connected, this, &TankClient::onConnected);
@@ -47,6 +47,7 @@ void TankClient::onReadyRead() {
     while (socket->canReadLine()) {
         QString msg = QString::fromUtf8(socket->readLine()).trimmed();
         qDebug() << "[TankClient] Received message:" << msg;
+
         if (msg.startsWith("SPAWN;")) {
             QStringList parts = msg.split(';');
             if (parts.size() == 4) {
@@ -66,6 +67,23 @@ void TankClient::onReadyRead() {
                 qDebug() << "[TankClient] Emitting moveTank signal with id:" << id << "x:" << x << "y:" << y << "angle:" << angle;
                 emit moveTank(id, x, y, angle);
             }
+        } else if (msg.startsWith("PLAYERS;")) {
+            // Формат: PLAYERS;id1;nick1;inBattle1;kills1;deaths1;id2;nick2;inBattle2;kills2;deaths2;...
+            QStringList parts = msg.split(';');
+            QList<PlayerInfo> players;
+
+            // Пропускаем "PLAYERS" в parts[0], читаем далее по 5 элементов
+            for (int i = 0; i + 4 < parts.size(); i += 5) {
+                PlayerInfo p;
+                p.id = parts[i];
+                p.nickname = parts[i + 1];
+                p.inBattle = (parts[i + 2] == "1");
+                p.kills = parts[i + 3].toInt();
+                p.deaths = parts[i + 4].toInt();
+                players.append(p);
+            }
+            qDebug() << "[TankClient] Parsed players list, emitting playersListUpdated with" << players.size() << "players.";
+            emit playersListUpdated(players);
         }
     }
 }
@@ -97,4 +115,3 @@ void TankClient::onStateChanged(QAbstractSocket::SocketState state) {
 void TankClient::setLocalPlayerId(const QString &id) {
     localPlayerId = id;
 }
-

@@ -6,6 +6,8 @@
 #include <QKeyEvent>
 #include "../../../TankClient.h"
 
+class TankClient;          // forward declaration
+
 
 class Turret;
 
@@ -29,8 +31,8 @@ private slots:
 private:
     void updateTurretRotation();
     bool checkCollision();
-
-    TankClient *client = nullptr;
+    int team;
+    TankClient *client;
     QString playerId;
     bool isLocalTank;
     Turret *turret = nullptr;
@@ -38,8 +40,14 @@ private:
     bool movingDown = false;
     bool rotatingLeft = false;
     bool rotatingRight = false;
-    qreal speed = 2.0;
+    qreal speed = 1.0;
     qreal angle = 0.0;
+    QPointF lastSentPos;
+    qreal lastSentAngle = -1;
+
+
+    QTimer *shootCooldownTimer;
+    bool canShoot;
 };
 
 #endif // TANK_H

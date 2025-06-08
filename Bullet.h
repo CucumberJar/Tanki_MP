@@ -19,4 +19,6 @@ private:
     qreal angle;
     qreal speed;
     qreal radius;
+
+    bool checkCollision();
 };

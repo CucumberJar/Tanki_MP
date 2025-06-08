@@ -293,6 +293,19 @@
 			"IWFA6LESXK/moc_ConnectionWindow.cpp",
 			null
 		],
+		[ "D:/untitled5/src/map/Base.h", "MU", "GVBWGARL6Y/moc_Base.cpp", null ],
+		[
+			"D:/untitled5/src/map/BonusBox.h",
+			"MU",
+			"GVBWGARL6Y/moc_BonusBox.cpp",
+			null
+		],
+		[
+			"D:/untitled5/src/map/Stone.h",
+			"MU",
+			"GVBWGARL6Y/moc_Stone.cpp",
+			null
+		],
 		[
 			"D:/untitled5/src/tank/entities/Tank.h",
 			"MU",
@@ -330,6 +343,8 @@
 		"D:/untitled5/src/entities",
 		"D:/untitled5/src/main",
 		"D:/untitled5/src/main/ui",
+		"D:/untitled5/src/MP",
+		"D:/untitled5/src/map",
 		"D:/QT/6.8.1/mingw_64/include/QtCore",
 		"D:/QT/6.8.1/mingw_64/include",
 		"D:/QT/6.8.1/mingw_64/mkspecs/win32-g++",
@@ -388,6 +403,9 @@
 		[ "D:/untitled5/src/main/GameScene.cpp", "MU", null ],
 		[ "D:/untitled5/src/main/GameView.cpp", "MU", null ],
 		[ "D:/untitled5/src/main/ui/ConnectionWindow.cpp", "MU", null ],
+		[ "D:/untitled5/src/map/Base.cpp", "MU", null ],
+		[ "D:/untitled5/src/map/BonusBox.cpp", "MU", null ],
+		[ "D:/untitled5/src/map/Stone.cpp", "MU", null ],
 		[ "D:/untitled5/src/tank/entities/Tank.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],

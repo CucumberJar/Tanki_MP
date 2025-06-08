@@ -2,6 +2,7 @@
 #define UNTITLED5_GAMELOAD_H
 #include "../Tile.h"
 #include "../Wall.h"
+#include "../src/map/Base.h"
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonArray>

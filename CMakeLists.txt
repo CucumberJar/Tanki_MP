@@ -14,10 +14,16 @@ include_directories(
         src/entities
         src/main
         src/main/ui
+        src/MP
+        src/map
 )
 
 add_executable(untitled5
+        src/map/Base.cpp
+        src/map/Stone.cpp
+        src/map/BonusBox.cpp
         src/main/ui/ConnectionWindow.cpp
+
         main.cpp
         src/tank/entities/Tank.cpp
         Game.cpp
@@ -34,34 +40,3 @@ add_executable(untitled5
 
 target_link_libraries(untitled5 Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network)
 
-if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
-    set(DEBUG_SUFFIX "")
-    if (MSVC AND CMAKE_BUILD_TYPE MATCHES "Debug")
-        set(DEBUG_SUFFIX "d")
-    endif ()
-
-    set(QT_INSTALL_PATH "${CMAKE_PREFIX_PATH}")
-    if (NOT EXISTS "${QT_INSTALL_PATH}/bin")
-        set(QT_INSTALL_PATH "${QT_INSTALL_PATH}/..")
-        if (NOT EXISTS "${QT_INSTALL_PATH}/bin")
-            set(QT_INSTALL_PATH "${QT_INSTALL_PATH}/..")
-        endif ()
-    endif ()
-
-    if (EXISTS "${QT_INSTALL_PATH}/plugins/platforms/qwindows${DEBUG_SUFFIX}.dll")
-        add_custom_command(TARGET untitled5 POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E make_directory
-                "$<TARGET_FILE_DIR:untitled5>/plugins/platforms/")
-        add_custom_command(TARGET untitled5 POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E copy
-                "${QT_INSTALL_PATH}/plugins/platforms/qwindows${DEBUG_SUFFIX}.dll"
-                "$<TARGET_FILE_DIR:untitled5>/plugins/platforms/")
-    endif ()
-
-    foreach (QT_LIB Core Gui Widgets)
-        add_custom_command(TARGET untitled5 POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E copy
-                "${QT_INSTALL_PATH}/bin/Qt6${QT_LIB}${DEBUG_SUFFIX}.dll"
-                "$<TARGET_FILE_DIR:untitled5>")
-    endforeach (QT_LIB)
-endif ()
