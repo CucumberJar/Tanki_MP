@@ -8,6 +8,8 @@
 #include <QTimer>
 #include "tank/entities/Tank.h"
 #include "Base.h"
+#include "../Turret.h"
+#include "../../Bullet.h"
 
 class Tank;
 
@@ -19,7 +21,7 @@ public:
     void setView(QGraphicsView* view);
     void spawnTank(const QString& id, qreal x, qreal y, bool isLocal);
     void onSpawnTank(const QString &id, int x, int y);
-    void onMoveTank(const QString &id, qreal x, qreal y, qreal angle);
+    void onMoveTank(const QString &id, qreal x, qreal y, qreal angle,qreal tAngle);
     void setLocalPlayerId(const QString &id) { localPlayerId = id; }
     void setClient(QObject *clientObject);
     void positionHUD();
@@ -31,31 +33,30 @@ public slots:
     void updateSceneRectAroundPlayer(qreal viewWidth, qreal viewHeight);
     void updateHUD(int hp, int ammo);
     void sendLocalTankPosition();
+    void onRemoveBlock(int x, int y);
+
 
 private:
+    int lives=3;
     QGraphicsTextItem *teamAScoreText = nullptr;
     QGraphicsTextItem *teamBScoreText = nullptr;
     QGraphicsRectItem *hudBackground = nullptr;
     QGraphicsView* view = nullptr;
     QMap<QString, Tank*> tanks;
     QString localPlayerId;
-    class TankClient *client = nullptr;
+    TankClient *client = nullptr;
     QTimer *sendTimer = nullptr;
     QGraphicsTextItem *healthText = nullptr;
     QGraphicsTextItem *ammoText = nullptr;
     QGraphicsTextItem *playerCountText = nullptr;
     QVector<Base> bases;
-
-
-
     Tank *localTank;
-
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
 
+    void onBulletMoved(const QString &ownerId, qreal x, qreal y, qreal angle);
 
-    void startBonusSpawner();
 
-    void spawnBonus();
+    void onDestroyTank(const QString &id);
 };
 
 #endif // GAMESCENE_H

@@ -16,7 +16,7 @@ void Game::start() {
     connect(client, &TankClient::spawnTank, scene, &GameScene::onSpawnTank);
     client->connectToServer(serverIP, 12345);
 
-    QString playerId = QUuid::createUuid().toString(QUuid::WithoutBraces);
+    QString playerId = nickname;
     client->sendJoinMessage(playerId);
     scene->setClient(client);
     scene->setLocalPlayerId(playerId);

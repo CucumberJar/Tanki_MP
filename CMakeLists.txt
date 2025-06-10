@@ -21,9 +21,8 @@ include_directories(
 add_executable(untitled5
         src/map/Base.cpp
         src/map/Stone.cpp
-        src/map/BonusBox.cpp
         src/main/ui/ConnectionWindow.cpp
-
+        src/main/ui/AboutDialog.cpp
         main.cpp
         src/tank/entities/Tank.cpp
         Game.cpp

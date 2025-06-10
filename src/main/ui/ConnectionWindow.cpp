@@ -1,6 +1,6 @@
 #include "ConnectionWindow.h"
+#include "AboutDialog.h"
 #include <QVBoxLayout>
-#include <QHBoxLayout>
 #include <QLabel>
 #include <QGraphicsDropShadowEffect>
 #include <QFont>
@@ -16,7 +16,6 @@ ConnectionWindow::ConnectionWindow(QWidget *parent) : QWidget(parent) {
     QFont inputFont("Segoe UI", 18);
     QFont buttonFont("Segoe UI", 20, QFont::DemiBold);
 
-    // Центральная панель с адаптивным размером
     QWidget *panel = new QWidget(this);
     panel->setFixedSize(600, 520);
     panel->setStyleSheet(R"(
@@ -110,6 +109,21 @@ ConnectionWindow::ConnectionWindow(QWidget *parent) : QWidget(parent) {
         }
     )");
 
+    infoButton = new QPushButton("О игре");
+    infoButton->setFont(buttonFont);
+    infoButton->setFixedHeight(50);
+    infoButton->setStyleSheet(R"(
+    QPushButton {
+        background-color: #1E88E5;
+        color: white;
+        border-radius: 10px;
+        padding: 12px;
+    }
+    QPushButton:hover {
+        background-color: #42A5F5;
+    }
+)");
+
     panelLayout->addWidget(title);
     panelLayout->addSpacing(50);
     panelLayout->addWidget(nicknameLabel);
@@ -119,8 +133,15 @@ ConnectionWindow::ConnectionWindow(QWidget *parent) : QWidget(parent) {
     panelLayout->addWidget(ipEdit);
     panelLayout->addSpacing(50);
     panelLayout->addWidget(connectButton);
+    panelLayout->addSpacing(50);
+    panelLayout->addWidget(infoButton);
     panelLayout->addSpacing(100);
     panelLayout->addWidget(exitButton);
+
+    connect(infoButton, &QPushButton::clicked, this, []() {
+        AboutDialog *dialog = new AboutDialog;
+        dialog->exec();
+    });
 
     connect(exitButton, &QPushButton::clicked, this, &QWidget::close);
     connect(connectButton, &QPushButton::clicked, [this]() {
@@ -128,7 +149,6 @@ ConnectionWindow::ConnectionWindow(QWidget *parent) : QWidget(parent) {
         this->hide();
     });
 }
-
 void ConnectionWindow::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     QLinearGradient gradient(0, 0, 0, height());

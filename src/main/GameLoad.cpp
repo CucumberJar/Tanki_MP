@@ -7,7 +7,7 @@
 GameLoad::GameLoad(GameScene * scene, GameView * view) {
     this->scene = scene;
     this->view=view;
-    QString map = "../desert.tmj";
+    QString map = "../desert2.tmj";
     loadMap(map);
 }
 
@@ -44,7 +44,7 @@ void GameLoad::loadMap(const QString &filename) {
                     int tileId = data[index].toInt();
                     if (tileId > 0) {
                         QPixmap tilePixmap = getTilePixmap(tileId);
-                        if (tileId == 3) { // Пример: добавление стены
+                        if (tileId == 3) {
                             Wall *wall = new Wall(x, y);
                             scene->addItem(wall);
                         }
@@ -60,7 +60,7 @@ void GameLoad::loadMap(const QString &filename) {
                         } else
                         if (!tilePixmap.isNull()&&tileId!=3&&tileId!=2) {
                             Tile *tile = new Tile(x * tileWidth, y * tileHeight, tilePixmap);
-                            tile->setZValue(layer["id"].toInt() - 2); // Настройка глубины отрисовки
+                            tile->setZValue(layer["id"].toInt() - 2);
                             scene->addItem(tile);
                         }
                     }

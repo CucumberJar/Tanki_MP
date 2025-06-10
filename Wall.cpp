@@ -10,8 +10,6 @@ QRectF Wall::boundingRect() const {
 
 void Wall::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
     QGraphicsPixmapItem::paint(painter, option, widget);
-    // painter->setPen(QPen(Qt::green, 2));
-    // painter->drawRect(boundingRect());
 }
 
 void Wall::setImage(QString way ){

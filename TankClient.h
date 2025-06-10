@@ -21,12 +21,14 @@ public:
     void connectToServer(const QString &ip, quint16 port);
     void sendJoinMessage(const QString &id);
     QTcpSocket* getSocket() const { return socket; }
-    void sendRawMessage(const QString &msg);
 signals:
-    void lobbyDataReceived(const QList<PlayerInfo>& players);
-    void playersListUpdated(const QList<PlayerInfo>& players);
     void spawnTank(const QString &id, int x, int y);
-    void moveTank(const QString &id, qreal x, qreal y, qreal angle);
+    void moveTank(const QString &id, qreal x, qreal y, qreal angle, qreal turretAngle);
+    void removeBlock(int x, int y);
+    void destroyTank(const QString &id);
+    void playersListUpdated(const QList<PlayerInfo> &players);
+
+
 
 
 private slots:

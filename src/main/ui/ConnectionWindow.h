@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QLineEdit>
 #include <QPushButton>
+#include "AboutDialog.h"
+// ...
 
 class ConnectionWindow : public QWidget {
 Q_OBJECT
@@ -20,7 +22,7 @@ private:
     QLineEdit *ipEdit;
     QPushButton *connectButton;
     QPushButton *exitButton;
-
+    QPushButton *infoButton;
     void paintEvent(QPaintEvent *event);
 };
 

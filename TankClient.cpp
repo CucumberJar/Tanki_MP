@@ -48,32 +48,35 @@ void TankClient::onReadyRead() {
         QString msg = QString::fromUtf8(socket->readLine()).trimmed();
         qDebug() << "[TankClient] Received message:" << msg;
 
-        if (msg.startsWith("SPAWN;")) {
-            QStringList parts = msg.split(';');
-            if (parts.size() == 4) {
-                QString id = parts[1];
-                int x = parts[2].toInt();
-                int y = parts[3].toInt();
-                qDebug() << "[TankClient] Emitting spawnTank signal with id:" << id << "x:" << x << "y:" << y;
-                emit spawnTank(id, x, y);
-            }
-        } else if (msg.startsWith("MOVE;")) {
-            QStringList parts = msg.split(';');
-            if (parts.size() == 5) {
-                QString id = parts[1];
-                qreal x = parts[2].toDouble();
-                qreal y = parts[3].toDouble();
-                qreal angle = parts[4].toDouble();
-                qDebug() << "[TankClient] Emitting moveTank signal with id:" << id << "x:" << x << "y:" << y << "angle:" << angle;
-                emit moveTank(id, x, y, angle);
-            }
-        } else if (msg.startsWith("PLAYERS;")) {
-            // Формат: PLAYERS;id1;nick1;inBattle1;kills1;deaths1;id2;nick2;inBattle2;kills2;deaths2;...
-            QStringList parts = msg.split(';');
-            QList<PlayerInfo> players;
+        QStringList parts = msg.split(';');
+        QString type = parts[0];
 
-            // Пропускаем "PLAYERS" в parts[0], читаем далее по 5 элементов
-            for (int i = 0; i + 4 < parts.size(); i += 5) {
+        if (type == "SPAWN" && parts.size() == 4) {
+            QString id = parts[1];
+            int x = parts[2].toInt();
+            int y = parts[3].toInt();
+            emit spawnTank(id, x, y);
+
+        } else if (type == "MOVE" && parts.size() == 6) {
+            QString id = parts[1];
+            qreal x = parts[2].toDouble();
+            qreal y = parts[3].toDouble();
+            qreal angle = parts[4].toDouble();
+            qreal turretAngle = parts[5].toDouble();
+            emit moveTank(id, x, y, angle, turretAngle);
+
+        } else if (type == "REMOVE_BLOCK" && parts.size() == 3) {
+            int x = parts[1].toInt();
+            int y = parts[2].toInt();
+            emit removeBlock(x, y);
+
+        } else if (type == "DESTROYED_TANK" && parts.size() == 2) {
+            QString id = parts[1];
+            emit destroyTank(id);
+
+        } else if (type == "PLAYERS") {
+            QList<PlayerInfo> players;
+            for (int i = 1; i + 4 < parts.size(); i += 5) {
                 PlayerInfo p;
                 p.id = parts[i];
                 p.nickname = parts[i + 1];
@@ -82,26 +85,19 @@ void TankClient::onReadyRead() {
                 p.deaths = parts[i + 4].toInt();
                 players.append(p);
             }
-            qDebug() << "[TankClient] Parsed players list, emitting playersListUpdated with" << players.size() << "players.";
             emit playersListUpdated(players);
+
+        } else {
+            qWarning() << "[TankClient] ⚠️ Unknown message type:" << msg;
         }
     }
 }
+
 
 void TankClient::onDisconnected() {
     qDebug() << "[TankClient] Disconnected from server.";
 }
 
-void TankClient::sendRawMessage(const QString &msg) {
-    qDebug() << "[TankClient] Preparing to send raw message. Socket state:" << socket->state();
-    if (socket->state() == QAbstractSocket::ConnectedState) {
-        qint64 written = socket->write(msg.toUtf8());
-        bool flushed = socket->flush();
-        qDebug() << "[TankClient] Raw message sent. Bytes written:" << written << ", flush status:" << flushed;
-    } else {
-        qWarning() << "[TankClient] Cannot send raw message, socket not connected!";
-    }
-}
 
 void TankClient::onErrorOccurred(QAbstractSocket::SocketError socketError) {
     qWarning() << "[TankClient] Socket error:" << socketError

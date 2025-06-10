@@ -5,7 +5,7 @@
 Turret::Turret(QGraphicsItem *parent)
         : QObject(), QGraphicsPixmapItem(parent)
 {
-    QPixmap turretPixmap("D:/untitled5/drawable/turret1.png");
+    QPixmap turretPixmap("D:/untitled5/drawable/turret0.png");
     setPixmap(turretPixmap);
     setZValue(10);
     setTransformOriginPoint(turretPixmap.width()/2, turretPixmap.height()/2);
