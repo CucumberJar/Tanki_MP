@@ -41,16 +41,13 @@ void TankClient::onConnected() {
         qWarning() << "[TankClient] localPlayerId is empty at connection time!";
     }
 }
-
 void TankClient::onReadyRead() {
     qDebug() << "[TankClient] Data available to read.";
     while (socket->canReadLine()) {
         QString msg = QString::fromUtf8(socket->readLine()).trimmed();
         qDebug() << "[TankClient] Received message:" << msg;
-
         QStringList parts = msg.split(';');
         QString type = parts[0];
-
         if (type == "SPAWN" && parts.size() == 4) {
             QString id = parts[1];
             int x = parts[2].toInt();
@@ -74,36 +71,18 @@ void TankClient::onReadyRead() {
             QString id = parts[1];
             emit destroyTank(id);
 
-        } else if (type == "PLAYERS") {
-            QList<PlayerInfo> players;
-            for (int i = 1; i + 4 < parts.size(); i += 5) {
-                PlayerInfo p;
-                p.id = parts[i];
-                p.nickname = parts[i + 1];
-                p.inBattle = (parts[i + 2] == "1");
-                p.kills = parts[i + 3].toInt();
-                p.deaths = parts[i + 4].toInt();
-                players.append(p);
-            }
-            emit playersListUpdated(players);
-
-        } else {
-            qWarning() << "[TankClient] ⚠️ Unknown message type:" << msg;
         }
     }
 }
-
 
 void TankClient::onDisconnected() {
     qDebug() << "[TankClient] Disconnected from server.";
 }
 
-
 void TankClient::onErrorOccurred(QAbstractSocket::SocketError socketError) {
     qWarning() << "[TankClient] Socket error:" << socketError
                << "-" << socket->errorString();
 }
-
 void TankClient::onStateChanged(QAbstractSocket::SocketState state) {
     qDebug() << "[TankClient] Socket state changed to:" << state;
 }

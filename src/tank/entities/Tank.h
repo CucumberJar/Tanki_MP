@@ -1,20 +1,13 @@
 #ifndef TANK_H
 #define TANK_H
-
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QKeyEvent>
-#include "../../../TankClient.h"
-
-class TankClient;          // forward declaration
-
-
+#include "main/TankClient.h"
+class TankClient;
 class Turret;
-
 class Tank : public QObject, public QGraphicsPixmapItem {
 Q_OBJECT
-
-
 
 public:
     void destroy();
@@ -26,16 +19,12 @@ public:
     int getHp(){return hp;}
     void setHp(int hp ){this->hp=hp;}
     QString getPlayerId(){return this->playerId;}
-
-
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void keyReleaseEvent(QKeyEvent *event) override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-
 private slots:
     void move();
-
 private:
     void updateTurretRotation();
     bool checkCollision();
@@ -53,12 +42,8 @@ private:
     QPointF lastSentPos;
     qreal lastSentAngle = -1;
     int hp=100;
-
-
     QTimer *shootCooldownTimer;
     bool canShoot;
     int lastSentTurretAngle;
-
 };
-
-#endif // TANK_H
+#endif

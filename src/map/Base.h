@@ -1,7 +1,5 @@
-
 #ifndef UNTITLED5_BASE_H
 #define UNTITLED5_BASE_H
-
 #include <QGraphicsPixmapItem>
 class Base : public QGraphicsPixmapItem {
 public:
@@ -14,7 +12,4 @@ private:
     int team=-1;
     int id;
 };
-
-
-
-#endif //UNTITLED5_BASE_H
+#endif

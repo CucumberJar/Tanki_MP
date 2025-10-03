@@ -1,9 +1,6 @@
 #include "Wall.h"
 #include <QPixmap>
-
 #include <QPainter>
-
-
 QRectF Wall::boundingRect() const {
     return QRectF(0, 0, pixmap().width(), pixmap().height());
 }

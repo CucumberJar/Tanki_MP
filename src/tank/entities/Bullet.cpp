@@ -4,17 +4,16 @@
 #include <QGraphicsScene>
 #include <QWidget>
 #include "Wall.h"
-#include "../src/map/Stone.h"
-#include "../src/tank/entities/Tank.h"
+#include "map/Stone.h"
+#include "Tank.h"
 Bullet::Bullet(qreal angle)
-        : angle(angle), speed(10), radius(4)  // радиус шара
+        : angle(angle), speed(10), radius(4)
 {
     setRotation(angle);
-
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Bullet::move);
     timer->start(10); // ~60 FPS
-    setFlag(QGraphicsItem::ItemIsFocusable, false); // Пуля НЕ фокусируется
+    setFlag(QGraphicsItem::ItemIsFocusable, false);
 
 }
 
@@ -40,11 +39,9 @@ void Bullet::move()
     checkCollision();
 }
 
-
 bool Bullet::checkCollision() {
     for (QGraphicsItem *item : scene()->collidingItems(this)) {
-        if (item == this) continue;  // Пропускаем саму пулю
-
+        if (item == this) continue;
         if (Stone *stone = dynamic_cast<Stone *>(item)) {
             QString msg=QString("BLOCK_DESTROYED;%1;%2\n").arg(int(stone->x())).arg(int(stone->y()));
             client->getSocket()->write(msg.toUtf8());
@@ -67,14 +64,8 @@ bool Bullet::checkCollision() {
                 QString msg=QString("TANK_DESTROYED;%1\n").arg(tank->getPlayerId());
                 client->getSocket()->write(msg.toUtf8());
                 client->getSocket()->flush();
-
-            }
-            return true;
-        }
-
-    }
-    return false;
-}
+            }return true;}
+    }return false;}
 
 const QString &Bullet::getPlayerId() const {
     return playerId;

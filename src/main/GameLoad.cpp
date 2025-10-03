@@ -18,16 +18,13 @@ void GameLoad::loadMap(const QString &filename) {
         qWarning() << "Не удалось открыть файл карты: " << filename;
         return;
     }
-
     QByteArray jsonData = file.readAll();
     QJsonDocument doc = QJsonDocument::fromJson(jsonData);
     QJsonObject mapData = doc.object();
-
     int mapWidth = mapData["width"].toInt();
     int mapHeight = mapData["height"].toInt();
     int tileWidth = mapData["tilewidth"].toInt();
     int tileHeight = mapData["tileheight"].toInt();
-
     qDebug() << "Загружаем карту с размерами: " << mapWidth << "x" << mapHeight;
     QJsonArray tilesets = mapData["tilesets"].toArray();
     parseTilesets(tilesets);
@@ -75,7 +72,6 @@ void GameLoad::parseTilesets(const QJsonArray &tilesets) {
         QJsonObject tileset = tilesetValue.toObject();
         int firstGid = tileset["firstgid"].toInt();
         QString imagePath = tileset["image"].toString();
-
         QPixmap tilePixmap(imagePath);
         if (!tilePixmap.isNull()) {
             tilesetImages.insert(firstGid, tilePixmap);

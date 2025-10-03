@@ -22,20 +22,18 @@ add_executable(untitled5
         src/map/Base.cpp
         src/map/Stone.cpp
         src/main/ui/ConnectionWindow.cpp
-        src/main/ui/AboutDialog.cpp
-        main.cpp
+        src/main/main.cpp
         src/tank/entities/Tank.cpp
-        Game.cpp
-        Wall.cpp
-        Turret.cpp
-        Bullet.cpp
-        Tile.cpp
-        TankClient.cpp
+        src/main/Game.cpp
+        src/map/Wall.cpp
+        src/tank/entities/Turret.cpp
+        src/tank/entities/Bullet.cpp
+        src/map/Tile.cpp
+        src/main/TankClient.cpp
         src/main/GameLoad.cpp
         src/main/GameView.cpp
         src/main/GameScene.cpp
 
 )
-
 target_link_libraries(untitled5 Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network)
 

@@ -1,11 +1,9 @@
 #include "Tank.h"
-#include "../../../Wall.h"
-#include "../../../Turret.h"
-#include "../../../Bullet.h"
+#include "map/Wall.h"
+#include "Turret.h"
+#include "Bullet.h"
 #include "Base.h"
 #include "Stone.h"
-
-#include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QCursor>
 #include <QTimer>
@@ -15,14 +13,13 @@
 
 Tank::Tank(bool isLocal, const QString &id, TankClient *clientPtr)
         : QObject(), QGraphicsPixmapItem(), isLocalTank(isLocal), playerId(id), client(clientPtr) {
-
-    QPixmap originalPixmap("../drawable/tank0.png");
+    QPixmap originalPixmap("../drawable/tank99.png");
     setPixmap(originalPixmap);
     setTransformOriginPoint(pixmap().width() / 2, pixmap().height() / 2);
     turret = new Turret(this);
     turret->setZValue(10);
     turret->setRotation(0);
-    turret->setPos(pixmap().width() / 2 - 32, pixmap().height() / 2 - 90);
+    turret->setPos(pixmap().width() / 2 -32, pixmap().height() / 2 -90);
     setFlag(QGraphicsItem::ItemIsFocusable);
     if (isLocalTank) setFocus();
     lastSentTurretAngle = turret->rotation();
@@ -33,35 +30,28 @@ Tank::Tank(bool isLocal, const QString &id, TankClient *clientPtr)
     shootCooldownTimer->setInterval(500);
     shootCooldownTimer->setSingleShot(true);
     connect(shootCooldownTimer, &QTimer::timeout, [this]() {
-        canShoot = true;
-    });
+        canShoot = true;});
     canShoot = true;
 }
 
 void Tank::updateTurretRotation() {
     if (!turret || !isLocalTank) return;
-
     QPointF turretCenter = turret->mapToScene(turret->boundingRect().center());
     QGraphicsView *view = scene()->views().first();
     QPoint cursorPos = QCursor::pos();
     QPoint cursorPosInView = view->viewport()->mapFromGlobal(cursorPos);
     QPointF cursorScenePos = view->mapToScene(cursorPosInView);
     QPointF direction = cursorScenePos - turretCenter;
-
     qreal targetAngle = qRadiansToDegrees(std::atan2(direction.y(), direction.x()));
     qreal turretRelativeAngle = targetAngle - angle + 90;
-
     while (turretRelativeAngle < -180) turretRelativeAngle += 360;
     while (turretRelativeAngle > 180) turretRelativeAngle -= 360;
-
     qreal deltaAngle = turretRelativeAngle - turret->rotation();
     while (deltaAngle < -180) deltaAngle += 360;
     while (deltaAngle > 180) deltaAngle -= 360;
-
     const qreal MAX_TURRET_ROTATION_SPEED = 0.5;
     if (deltaAngle > MAX_TURRET_ROTATION_SPEED) deltaAngle = MAX_TURRET_ROTATION_SPEED;
     if (deltaAngle < -MAX_TURRET_ROTATION_SPEED) deltaAngle = -MAX_TURRET_ROTATION_SPEED;
-
     turret->setRotation(turret->rotation() + deltaAngle);
 }
 
@@ -87,14 +77,11 @@ void Tank::keyReleaseEvent(QKeyEvent *event) {
 
 void Tank::move() {
     if (!isLocalTank) return;
-
     if (!hasFocus()) setFocus();
     updateTurretRotation();
-
     qreal newAngle = angle;
     if (rotatingLeft) newAngle -= 1;
     if (rotatingRight) newAngle += 1;
-
     if (newAngle != angle) {
         angle = newAngle;
         setRotation(angle);
@@ -103,7 +90,6 @@ void Tank::move() {
             setRotation(angle);
         }
     }
-
     QPointF delta;
     if (movingUp || movingDown) {
         qreal rad = qDegreesToRadians(angle);
@@ -113,19 +99,15 @@ void Tank::move() {
         setPos(newPos);
         if (checkCollision()) setPos(pos() - delta);
     }
-
     qreal posThreshold = 0.1;
     qreal angleThreshold = 2;
-
     if (client) {
         QPointF currentPos = pos();
         qreal currentTurretAngle = turret->rotation();
-
         bool posChanged = qAbs(currentPos.x() - lastSentPos.x()) > posThreshold ||
                           qAbs(currentPos.y() - lastSentPos.y()) > posThreshold;
         bool bodyAngleChanged = qAbs(angle - lastSentAngle) > angleThreshold;
         bool turretAngleChanged = qAbs(currentTurretAngle - lastSentTurretAngle) > angleThreshold;
-
         if (posChanged || bodyAngleChanged || turretAngleChanged) {
             QString msg = QString("MOVE;%1;%2;%3;%4;%5\n")
                     .arg(playerId)
@@ -133,16 +115,13 @@ void Tank::move() {
                     .arg(currentPos.y(), 0, 'f', 2)
                     .arg(angle, 0, 'f', 2)
                     .arg(currentTurretAngle, 0, 'f', 2);
-
             client->getSocket()->write(msg.toUtf8());
             client->getSocket()->flush();
-
             lastSentPos = currentPos;
             lastSentAngle = angle;
             lastSentTurretAngle = currentTurretAngle;
         }
     }
-
 }
 
 QRectF Tank::boundingRect() const {
@@ -161,10 +140,8 @@ void Tank::destroy() {
 }
 void Tank::shoot() {
     if (!canShoot) return;
-
     canShoot = false;
     shootCooldownTimer->start();
-
     Bullet *bullet = new Bullet(turret->rotation() + angle);
     bullet->setPlayerId(this->playerId);
     bullet->setClient(this->client);

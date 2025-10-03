@@ -15,12 +15,10 @@ void Game::start() {
     auto* client = new TankClient(this);
     connect(client, &TankClient::spawnTank, scene, &GameScene::onSpawnTank);
     client->connectToServer(serverIP, 12345);
-
     QString playerId = nickname;
     client->sendJoinMessage(playerId);
     scene->setClient(client);
     scene->setLocalPlayerId(playerId);
-
     GameLoad loader(scene, view);
     view->show();
 }

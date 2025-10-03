@@ -1,6 +1,6 @@
 #include "GameScene.h"
 #include "Stone.h"
-#include "../../Wall.h"
+#include "map/Wall.h"
 
 #include <QTimer>
 
@@ -36,8 +36,6 @@ void GameScene::onRemoveBlock(int x, int y) {
     wall->setPos(x, y);
     wall->setZValue(10);
     this->addItem(wall);
-
-
     for (QGraphicsItem* item : this->collidingItems(wall)) {
         if (auto* stone = dynamic_cast<Stone*>(item)) {
             removeItem(stone);
@@ -47,8 +45,6 @@ void GameScene::onRemoveBlock(int x, int y) {
     this->removeItem(wall);
 }
 
-
-
 void GameScene::onDestroyTank(const QString &id) {
     if (!tanks.contains(id)) return;
     Tank* tank = tanks[id];
@@ -56,7 +52,6 @@ void GameScene::onDestroyTank(const QString &id) {
     tanks.remove(id);
     updateHUD(0, 0);
 }
-
 
 void GameScene::spawnTank(const QString& id, qreal x, qreal y, bool isLocal) {
     if (tanks.contains(id)) {
@@ -70,7 +65,6 @@ void GameScene::spawnTank(const QString& id, qreal x, qreal y, bool isLocal) {
     addItem(tank);
     tanks[id] = tank;
     updateHUD(100, 20);
-
     if (isLocal) {
         localTank = tank;
         localPlayerId = id;
@@ -85,9 +79,9 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
         if(localTank)
             localTank->shoot();
     }
-
     QGraphicsScene::mousePressEvent(event);
 }
+
 void GameScene::setView(QGraphicsView* view) {
     this->view = view;
 }
@@ -148,6 +142,7 @@ void GameScene::updateHUD(int hp, int ammo) {
     if (ammoText) ammoText->setPlainText(QString("💥 Ammo: %1").arg(ammo));
     if (playerCountText) playerCountText->setPlainText(QString("👥 Players: %1").arg(tanks.size()));
 }
+
 void GameScene::updateTeamScores(int teamAScore, int teamBScore) {
     if (teamAScoreText)
         teamAScoreText->setPlainText(QString("🟥 Team A: %1").arg(teamAScore));
@@ -157,34 +152,26 @@ void GameScene::updateTeamScores(int teamAScore, int teamBScore) {
 
 void GameScene::positionHUD() {
     if (!view || !hudBackground) return;
-
     QRectF visible = view->mapToScene(view->viewport()->rect()).boundingRect();
     qreal hudHeight = 40;
     qreal margin = 10;
-
     hudBackground->setRect(visible.left(), visible.bottom() - hudHeight, visible.width(), hudHeight);
-
     qreal leftX = visible.left() + margin;
     qreal rightX = visible.right() - margin;
     qreal centerX = visible.center().x();
     qreal y = visible.bottom() - hudHeight + margin;
-
     if (healthText)
         healthText->setPos(leftX, y);
-
     if (teamAScoreText)
         teamAScoreText->setPos(leftX + 100, y);
-
     if (ammoText) {
         QRectF bounds = ammoText->boundingRect();
         ammoText->setPos(centerX - bounds.width() / 2, y);
     }
-
     if (teamBScoreText) {
         QRectF bounds = teamBScoreText->boundingRect();
         teamBScoreText->setPos(rightX - 150-bounds.width(), y);
     }
-
     if (playerCountText) {
         QRectF bounds = playerCountText->boundingRect();
         playerCountText->setPos(rightX - bounds.width(), y);

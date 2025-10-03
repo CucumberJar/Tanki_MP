@@ -3,19 +3,12 @@
 
 #include <QObject>
 #include <QTcpSocket>
-#include "../src/MP/Playerinfo.h"
 #include "Game.h"
-
 class TankClient;
 class Game;
 class TankClient : public QObject {
 Q_OBJECT
-
-
-
-
 public:
-
     void setLocalPlayerId(const QString &id);
     TankClient(Game *pGame);
     void connectToServer(const QString &ip, quint16 port);
@@ -26,25 +19,14 @@ signals:
     void moveTank(const QString &id, qreal x, qreal y, qreal angle, qreal turretAngle);
     void removeBlock(int x, int y);
     void destroyTank(const QString &id);
-    void playersListUpdated(const QList<PlayerInfo> &players);
-
-
-
-
 private slots:
-
     void onConnected();
     void onReadyRead();
     void onDisconnected();
     void onErrorOccurred(QAbstractSocket::SocketError socketError);
     void onStateChanged(QAbstractSocket::SocketState state);
-
 private:
     QTcpSocket *socket;
     QString localPlayerId;
-
-
-
 };
-
-#endif // TANKCLIENT_H
+#endif

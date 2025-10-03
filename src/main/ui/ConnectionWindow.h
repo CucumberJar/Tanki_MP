@@ -1,22 +1,16 @@
 #ifndef CONNECTIONWINDOW_H
 #define CONNECTIONWINDOW_H
-
 #include <QWidget>
 #include <QLineEdit>
 #include <QPushButton>
-#include "AboutDialog.h"
-// ...
-
 class ConnectionWindow : public QWidget {
 Q_OBJECT
 public:
     explicit ConnectionWindow(QWidget *parent = nullptr);
     QString getNickname() const { return nicknameEdit->text(); }
     QString getServerIP() const { return ipEdit->text(); }
-
 signals:
     void startGame();
-
 private:
     QLineEdit *nicknameEdit;
     QLineEdit *ipEdit;
@@ -25,5 +19,4 @@ private:
     QPushButton *infoButton;
     void paintEvent(QPaintEvent *event);
 };
-
-#endif // CONNECTIONWINDOW_H
+#endif

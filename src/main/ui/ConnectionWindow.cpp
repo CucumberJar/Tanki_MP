@@ -1,5 +1,4 @@
 #include "ConnectionWindow.h"
-#include "AboutDialog.h"
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QGraphicsDropShadowEffect>
@@ -138,10 +137,7 @@ ConnectionWindow::ConnectionWindow(QWidget *parent) : QWidget(parent) {
     panelLayout->addSpacing(100);
     panelLayout->addWidget(exitButton);
 
-    connect(infoButton, &QPushButton::clicked, this, []() {
-        AboutDialog *dialog = new AboutDialog;
-        dialog->exec();
-    });
+
 
     connect(exitButton, &QPushButton::clicked, this, &QWidget::close);
     connect(connectButton, &QPushButton::clicked, [this]() {

@@ -1,6 +1,4 @@
-
 #include "Base.h"
-
 Base::Base(qreal x, qreal y) {
     setPos((x) * 32, (y - 1) * 32);
     QPixmap boxPixmap("../drawable/texture/base.png");
@@ -21,11 +19,7 @@ void Base::setTeam(int team) {
                 setPixmap(boxPixmap1);
                 break;
             }
-
-        }
-    }
-
-}
+        }}}
 
 int Base::getTeam(){
     return this->team;

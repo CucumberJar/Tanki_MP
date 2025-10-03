@@ -8,8 +8,8 @@
 #include <QTimer>
 #include "tank/entities/Tank.h"
 #include "Base.h"
-#include "../Turret.h"
-#include "../../Bullet.h"
+#include "tank/entities/Turret.h"
+#include "tank/entities/Bullet.h"
 
 class Tank;
 
@@ -35,7 +35,6 @@ public slots:
     void sendLocalTankPosition();
     void onRemoveBlock(int x, int y);
 
-
 private:
     int lives=3;
     QGraphicsTextItem *teamAScoreText = nullptr;
@@ -52,11 +51,8 @@ private:
     QVector<Base> bases;
     Tank *localTank;
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
-
     void onBulletMoved(const QString &ownerId, qreal x, qreal y, qreal angle);
-
-
     void onDestroyTank(const QString &id);
 };
 
-#endif // GAMESCENE_H
+#endif
